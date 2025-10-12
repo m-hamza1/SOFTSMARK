@@ -77,22 +77,8 @@
 
           <!-- Right: Desktop Button + Mobile Buttons -->
           <div class="flex items-center gap-3">
-            <!-- Mobile Consultation Icon (Calendar) -->
-            <a id="consultation-btn-mobile" href="#" class="md:hidden px-3 py-2 text-white bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-full shadow-lg shadow-purple-500/25 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/40 hover:-translate-y-0.5 animate-pulse" title="Book Consultation">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 hover:rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </a>
-
-            <!-- Mobile Menu Button (Hamburger) -->
-            <button id="mobile-menu-button" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none transition-all duration-200 hover:bg-white/10 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-
             <!-- Desktop Button: Shiny CTA (keeps id for JS) -->
-            <div class="hidden md:inline-block">
+            <div class="inline-block">
               <div class="inline-block bg-transparent">
                 <style>
                   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
@@ -129,7 +115,7 @@
                     --shadow-size: 2px;
                     position: relative;
                     overflow: hidden;
-                    border-radius: 9999px;
+                    border-radius: 8px;
                     padding: 0.75rem 1.5rem;
                     font-size: 0.9rem;
                     line-height: 1.2;
@@ -146,6 +132,23 @@
                     font-family: 'Inter', 'Helvetica Neue', sans-serif;
                     z-index: 0;
                     animation: border-spin 2.5s linear infinite;
+                  }
+
+                  /* Mobile styles */
+                  @media (max-width: 768px) {
+                    .shiny-cta {
+                      padding: 0.5rem;
+                      width: 36px;
+                      height: 36px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0;
+                      min-width: unset;
+                      overflow: hidden;
+                      text-indent: -9999px;
+                      border-radius: 6px;
+                    }
                   }
 
                   @keyframes border-spin {
@@ -240,10 +243,26 @@
                   }
                 </style>
                 <button id="consultation-btn-desktop" class="shiny-cta focus:outline-none" aria-label="Book Free Consultation">
-                  <span>Book Free Consultation</span>
+                  <!-- Only show content on desktop -->
+                  <div class="contents md:block">
+                    <span>Book Free Consultation</span>
+                  </div>
+                  <!-- Only show icon on mobile -->
+                  <div class="md:hidden flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
                 </button>
               </div>
             </div>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none transition-all duration-200 hover:bg-white/10 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
             
           </div>
         </div>
@@ -372,159 +391,6 @@
               <a href="featured.html" class="block text-xl font-medium text-white hover:text-violet-400 transition-colors py-2">Featured</a>
               <a href="solutions.html" class="block text-xl font-medium text-white hover:text-violet-400 transition-colors py-2">Solutions</a>
               <a href="pricing.html" class="block text-xl font-medium text-white hover:text-violet-400 transition-colors py-2">Pricing</a>
-            </div>
-
-            <!-- Mobile CTA Button -->
-            <div class="mt-12">
-              <div class="inline-block bg-transparent">
-                <style>
-                  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
-
-                  @property --gradient-angle-mobile {
-                    syntax: "<angle>";
-                    initial-value: 0deg;
-                    inherits: false;
-                  }
-
-                  @property --gradient-angle-offset-mobile {
-                    syntax: "<angle>";
-                    initial-value: 0deg;
-                    inherits: false;
-                  }
-
-                  @property --gradient-percent-mobile {
-                    syntax: "<percentage>";
-                    initial-value: 20%;
-                    inherits: false;
-                  }
-
-                  @property --gradient-shine-mobile {
-                    syntax: "<color>";
-                    initial-value: #8484ff;
-                    inherits: false;
-                  }
-
-                  .shiny-cta-mobile {
-                    --gradient-angle-mobile: 0deg;
-                    --gradient-angle-offset-mobile: 0deg;
-                    --gradient-percent-mobile: 20%;
-                    --gradient-shine-mobile: #8484ff;
-                    --shadow-size: 2px;
-                    position: relative;
-                    overflow: hidden;
-                    border-radius: 9999px;
-                    padding: 0.75rem 1.5rem;
-                    font-size: 0.9rem;
-                    line-height: 1.2;
-                    font-weight: 500;
-                    color: #ffffff;
-                    background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from calc(var(--gradient-angle-mobile) - var(--gradient-angle-offset-mobile)), transparent 0%, #1d4ed8 5%, var(--gradient-shine-mobile) 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box;
-                    border: 2px solid transparent;
-                    box-shadow: inset 0 0 0 1px #1a1818;
-                    outline: none;
-                    transition: --gradient-angle-offset-mobile 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-percent-mobile 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-shine-mobile 800ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s;
-                    cursor: pointer;
-                    isolation: isolate;
-                    outline-offset: 4px;
-                    font-family: 'Inter', 'Helvetica Neue', sans-serif;
-                    z-index: 0;
-                    animation: border-spin-mobile 2.5s linear infinite;
-                    width: 100%;
-                    text-align: center;
-                  }
-
-                  @keyframes border-spin-mobile {
-                    to {
-                      --gradient-angle-mobile: 360deg;
-                    }
-                  }
-
-                  .shiny-cta-mobile:active {
-                    transform: translateY(1px);
-                  }
-
-                  .shiny-cta-mobile::before {
-                    content: '';
-                    pointer-events: none;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 0;
-                    --size: calc(100% - 5px);
-                    --position: 2px;
-                    --space: 4px;
-                    width: var(--size);
-                    height: var(--size);
-                    background: radial-gradient(circle at var(--position) var(--position), white 0.5px, transparent 0) padding-box;
-                    background-size: var(--space) var(--space);
-                    background-repeat: space;
-                    mask-image: conic-gradient(from calc(var(--gradient-angle-mobile) + 45deg), black, transparent 10% 90%, black);
-                    border-radius: inherit;
-                    opacity: 0.4;
-                    pointer-events: none;
-                  }
-
-                  .shiny-cta-mobile::after {
-                    content: '';
-                    pointer-events: none;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: 1;
-                    width: 100%;
-                    aspect-ratio: 1;
-                    background: linear-gradient(-50deg, transparent, #1d4ed8, transparent);
-                    mask-image: radial-gradient(circle at bottom, transparent 40%, black);
-                    opacity: 0.6;
-                    animation: shimmer-mobile 4s linear infinite;
-                    animation-play-state: running;
-                  }
-
-                  @keyframes shimmer-mobile {
-                    to {
-                      transform: translate(-50%, -50%) rotate(360deg);
-                    }
-                  }
-
-                  @keyframes breathe-mobile {
-                    0%, 100% {
-                      transform: translate(-50%, -50%) scale(1);
-                    }
-                    50% {
-                      transform: translate(-50%, -50%) scale(1.20);
-                    }
-                  }
-
-                  .shiny-cta-mobile span {
-                    position: relative;
-                    z-index: 2;
-                    display: inline-block;
-                  }
-
-                  .shiny-cta-mobile span::before {
-                    content: '';
-                    pointer-events: none;
-                    position: absolute;
-                    left: 50%;
-                    top: 50%;
-                    transform: translate(-50%, -50%);
-                    z-index: -1;
-                    --size: calc(100% + 0.75rem);
-                    width: var(--size);
-                    height: var(--size);
-                    box-shadow: inset 0 -0.8ex 1.6rem 3px #1d4ed8;
-                    opacity: 0;
-                    border-radius: inherit;
-                    transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
-                    animation: breathe-mobile 4.5s linear infinite;
-                  }
-                </style>
-                <button id="consultation-btn-menu" class="shiny-cta-mobile focus:outline-none">
-                  <span>Book Free Consultation</span>
-                </button>
-              </div>
             </div>
           </div>
         </div>
@@ -744,7 +610,7 @@
 
               <div class="flex gap-3 ring-1 ring-white/10 bg-white/5 rounded-xl pt-3 pr-4 pb-3 pl-4 shadow-sm backdrop-blur items-center">
                 <div class="h-8 w-8 rounded-lg bg-gradient-to-br from-fuchsia-500 to-violet-600 flex items-center justify-center ring-1 ring-white/20">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail h-4 w-4 text-white"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail h-4 w-4 text-white"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2" class=""></rect></svg>
                 </div>
                 <div class="min-w-0">
                   <p class="text-sm font-medium text-slate-200">Orbit Mail</p>
@@ -798,8 +664,6 @@
       <div class="grid grid-cols-7 text-center text-xs text-slate-400 mb-2">
         <div class="">Su</div><div class="">Mo</div><div class="">Tu</div><div class="">We</div><div class="">Th</div><div class="">Fr</div><div class="">Sa</div>
       </div>
-      <div class="grid grid-cols-7 gap-1 text-sm" id="calendar-grid" aria-live="polite"><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-07-27" role="button" aria-label="Sun Jul 27 2025">27</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-07-28" role="button" aria-label="Mon Jul 28 2025">28</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-07-29" role="button" aria-label="Tue Jul 29 2025">29</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-07-30" role="button" aria-label="Wed Jul 30 2025">30</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-07-31" role="button" aria-label="Thu Jul 31 2025">31</div><div class="h-9 flex items-center justify-center" data-date="2025-08-01" role="button" aria-label="Fri Aug 01 2025">1</div><div class="h-9 flex items-center justify-center" data-date="2025-08-02" role="button" aria-label="Sat Aug 02 2025">2</div><div class="h-9 flex items-center justify-center" data-date="2025-08-03" role="button" aria-label="Sun Aug 03 2025">3</div><div class="h-9 flex items-center justify-center" data-date="2025-08-04" role="button" aria-label="Mon Aug 04 2025">4</div><div class="h-9 flex items-center justify-center" data-date="2025-08-05" role="button" aria-label="Tue Aug 05 2025">5</div><div class="h-9 flex items-center justify-center" data-date="2025-08-06" role="button" aria-label="Wed Aug 06 2025">6</div><div class="h-9 flex items-center justify-center" data-date="2025-08-07" role="button" aria-label="Thu Aug 07 2025">7</div><div class="h-9 flex items-center justify-center" data-date="2025-08-08" role="button" aria-label="Fri Aug 08 2025">8</div><div class="h-9 flex items-center justify-center" data-date="2025-08-09" role="button" aria-label="Sat Aug 09 2025">9</div><div class="h-9 flex items-center justify-center" data-date="2025-08-10" role="button" aria-label="Sun Aug 10 2025">10</div><div class="h-9 flex items-center justify-center" data-date="2025-08-11" role="button" aria-label="Mon Aug 11 2025">11</div><div class="h-9 flex items-center justify-center" data-date="2025-08-12" role="button" aria-label="Tue Aug 12 2025">12</div><div class="h-9 flex items-center justify-center" data-date="2025-08-13" role="button" aria-label="Wed Aug 13 2025">13</div><div class="h-9 flex items-center justify-center" data-date="2025-08-14" role="button" aria-label="Thu Aug 14 2025">14</div><div class="h-9 flex items-center justify-center" data-date="2025-08-15" role="button" aria-label="Fri Aug 15 2025">15</div><div class="h-9 flex items-center justify-center" data-date="2025-08-16" role="button" aria-label="Sat Aug 16 2025">16</div><div class="h-9 flex items-center justify-center" data-date="2025-08-17" role="button" aria-label="Sun Aug 17 2025">17</div><div class="h-9 flex items-center justify-center" data-date="2025-08-18" role="button" aria-label="Mon Aug 18 2025">18</div><div class="h-9 flex items-center justify-center" data-date="2025-08-19" role="button" aria-label="Tue Aug 19 2025"><div class="h-7 w-7 rounded-lg bg-violet-500 text-white flex items-center justify-center shadow-inner shadow-violet-900/40">19</div></div><div class="h-9 flex items-center justify-center" data-date="2025-08-20" role="button" aria-label="Wed Aug 20 2025">20</div><div class="h-9 flex items-center justify-center" data-date="2025-08-21" role="button" aria-label="Thu Aug 21 2025">21</div><div class="h-9 flex items-center justify-center" data-date="2025-08-22" role="button" aria-label="Fri Aug 22 2025">22</div><div class="h-9 flex items-center justify-center" data-date="2025-08-23" role="button" aria-label="Sat Aug 23 2025">23</div><div class="h-9 flex items-center justify-center" data-date="2025-08-24" role="button" aria-label="Sun Aug 24 2025">24</div><div class="h-9 flex items-center justify-center" data-date="2025-08-25" role="button" aria-label="Mon Aug 25 2025">25</div><div class="h-9 flex items-center justify-center" data-date="2025-08-26" role="button" aria-label="Tue Aug 26 2025">26</div><div class="h-9 flex items-center justify-center" data-date="2025-08-27" role="button" aria-label="Wed Aug 27 2025">27</div><div class="h-9 flex items-center justify-center" data-date="2025-08-28" role="button" aria-label="Thu Aug 28 2025">28</div><div class="h-9 flex items-center justify-center" data-date="2025-08-29" role="button" aria-label="Fri Aug 29 2025">29</div><div class="h-9 flex items-center justify-center" data-date="2025-08-30" role="button" aria-label="Sat Aug 30 2025">30</div><div class="h-9 flex items-center justify-center" data-date="2025-08-31" role="button" aria-label="Sun Aug 31 2025">31</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-09-01" role="button" aria-label="Mon Sep 01 2025">1</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-09-02" role="button" aria-label="Tue Sep 02 2025">2</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-09-03" role="button" aria-label="Wed Sep 03 2025">3</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-09-04" role="button" aria-label="Thu Sep 04 2025">4</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-09-05" role="button" aria-label="Fri Sep 05 2025">5</div><div class="h-9 flex items-center justify-center text-slate-600" data-date="2025-09-06" role="button" aria-label="Sat Sep 06 2025">6</div></div>
-    </div>
     </div>
 
     <!-- Meetings -->
