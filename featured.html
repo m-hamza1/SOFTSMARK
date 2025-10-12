@@ -44,26 +44,13 @@
             <a href="featured.html" class="px-4 py-2 text-sm font-medium text-zinc-300 hover:text-white transition">Featured</a>
             <a href="solutions.html" class="px-4 py-2 text-sm font-medium text-zinc-300 hover:text-white transition">Solutions</a>
             <a href="pricing.html" class="px-4 py-2 text-sm font-medium text-zinc-300 hover:text-white transition">Pricing</a>
+           
           </nav>
 
           <!-- Right: Desktop Button + Mobile Buttons -->
           <div class="flex items-center gap-3">
-            <!-- Mobile Consultation Icon (Calendar) -->
-            <a id="consultation-btn-mobile" href="#" class="md:hidden px-3 py-2 text-white bg-gradient-to-br from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 rounded-full shadow-lg shadow-purple-500/25 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-purple-500/40 hover:-translate-y-0.5 animate-pulse" title="Book Consultation">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform duration-300 hover:rotate-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </a>
-
-            <!-- Mobile Menu Button (Hamburger) -->
-            <button id="mobile-menu-button" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none transition-all duration-200 hover:bg-white/10 rounded-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-
-            <!-- Desktop Button: Shiny CTA provided by user (keeps id for JS) -->
-            <div class="hidden md:inline-block">
+            <!-- Desktop Button: Shiny CTA (keeps id for JS) -->
+            <div class="inline-block">
               <div class="inline-block bg-transparent">
                 <style>
                   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
@@ -100,7 +87,7 @@
                     --shadow-size: 2px;
                     position: relative;
                     overflow: hidden;
-                    border-radius: 9999px;
+                    border-radius: 8px;
                     padding: 0.75rem 1.5rem;
                     font-size: 0.9rem;
                     line-height: 1.2;
@@ -117,6 +104,23 @@
                     font-family: 'Inter', 'Helvetica Neue', sans-serif;
                     z-index: 0;
                     animation: border-spin 2.5s linear infinite;
+                  }
+
+                  /* Mobile styles */
+                  @media (max-width: 768px) {
+                    .shiny-cta {
+                      padding: 0.5rem;
+                      width: 36px;
+                      height: 36px;
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      font-size: 0;
+                      min-width: unset;
+                      overflow: hidden;
+                      text-indent: -9999px;
+                      border-radius: 6px;
+                    }
                   }
 
                   @keyframes border-spin {
@@ -211,10 +215,27 @@
                   }
                 </style>
                 <button id="consultation-btn-desktop" class="shiny-cta focus:outline-none" aria-label="Book Free Consultation">
-                  <span>Book Free Consultation</span>
+                  <!-- Only show content on desktop -->
+                  <div class="contents md:block">
+                    <span>Book Free Consultation</span>
+                  </div>
+                  <!-- Only show icon on mobile -->
+                  <div class="md:hidden flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                  </div>
                 </button>
               </div>
             </div>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none transition-all duration-200 hover:bg-white/10 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            
           </div>
         </div>
       </div>
