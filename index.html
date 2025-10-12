@@ -85,8 +85,8 @@
             </a>
 
             <!-- Mobile Menu Button (Hamburger) -->
-            <button id="mobile-menu-button" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button id="mobile-menu-button" class="md:hidden p-2 text-zinc-400 hover:text-white focus:outline-none transition-all duration-200 hover:bg-white/10 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-200 hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
@@ -337,27 +337,196 @@
     </div>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-sm z-50 hidden md:hidden">
-      <div class="flex flex-col items-center justify-center h-full px-6">
-        <!-- Close Button -->
-        <button id="close-menu" class="absolute top-6 right-6 text-zinc-400 hover:text-white">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-        
-        <!-- Mobile Navigation Links -->
-        <div class="flex flex-col items-center space-y-8 text-center">
-          <a href="index.html" class="text-2xl font-medium text-white hover:text-violet-400 transition-colors">Home</a>
-          <a href="featured.html" class="text-2xl font-medium text-white hover:text-violet-400 transition-colors">Featured</a>
-          <a href="#" class="text-2xl font-medium text-white hover:text-violet-400 transition-colors">Solutions</a>
-          <a href="#" class="text-2xl font-medium text-white hover:text-violet-400 transition-colors">Enterprise</a>
-          <a href="pricing.html" class="text-2xl font-medium text-white hover:text-violet-400 transition-colors">Pricing</a>
-          
-          <!-- Mobile CTA Button -->
-          <a id="consultation-btn-menu" href="#" class="mt-8 px-8 py-3 bg-gradient-to-r from-violet-500 to-indigo-600 text-white rounded-full font-medium text-lg hover:opacity-90 transition-opacity">
-            Book Free Consultation
-          </a>
+    <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden">
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+      <!-- Menu Panel -->
+      <div class="absolute right-0 top-0 h-full w-80 max-w-[90vw] bg-[#0a0a12] border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out">
+        <div class="flex flex-col h-full">
+          <!-- Header -->
+          <div class="flex items-center justify-between p-6 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 6v12"></path>
+                  <path d="M17.196 9 6.804 15"></path>
+                  <path d="m6.804 9 10.392 6"></path>
+                </svg>
+              </span>
+              <span class="text-lg font-semibold text-white tracking-tight">SOFTSMARK</span>
+            </div>
+
+            <!-- Close Button -->
+            <button id="close-menu" class="p-2 text-zinc-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- Navigation Links -->
+          <div class="flex-1 flex flex-col justify-center px-6">
+            <div class="space-y-6">
+              <a href="index.html" class="block text-xl font-medium text-white hover:text-violet-400 transition-colors py-2">Home</a>
+              <a href="featured.html" class="block text-xl font-medium text-white hover:text-violet-400 transition-colors py-2">Featured</a>
+              <a href="solutions.html" class="block text-xl font-medium text-white hover:text-violet-400 transition-colors py-2">Solutions</a>
+              <a href="pricing.html" class="block text-xl font-medium text-white hover:text-violet-400 transition-colors py-2">Pricing</a>
+            </div>
+
+            <!-- Mobile CTA Button -->
+            <div class="mt-12">
+              <div class="inline-block bg-transparent">
+                <style>
+                  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+                  @property --gradient-angle-mobile {
+                    syntax: "<angle>";
+                    initial-value: 0deg;
+                    inherits: false;
+                  }
+
+                  @property --gradient-angle-offset-mobile {
+                    syntax: "<angle>";
+                    initial-value: 0deg;
+                    inherits: false;
+                  }
+
+                  @property --gradient-percent-mobile {
+                    syntax: "<percentage>";
+                    initial-value: 20%;
+                    inherits: false;
+                  }
+
+                  @property --gradient-shine-mobile {
+                    syntax: "<color>";
+                    initial-value: #8484ff;
+                    inherits: false;
+                  }
+
+                  .shiny-cta-mobile {
+                    --gradient-angle-mobile: 0deg;
+                    --gradient-angle-offset-mobile: 0deg;
+                    --gradient-percent-mobile: 20%;
+                    --gradient-shine-mobile: #8484ff;
+                    --shadow-size: 2px;
+                    position: relative;
+                    overflow: hidden;
+                    border-radius: 9999px;
+                    padding: 0.75rem 1.5rem;
+                    font-size: 0.9rem;
+                    line-height: 1.2;
+                    font-weight: 500;
+                    color: #ffffff;
+                    background: linear-gradient(#000000, #000000) padding-box, conic-gradient(from calc(var(--gradient-angle-mobile) - var(--gradient-angle-offset-mobile)), transparent 0%, #1d4ed8 5%, var(--gradient-shine-mobile) 15%, #1d4ed8 30%, transparent 40%, transparent 100%) border-box;
+                    border: 2px solid transparent;
+                    box-shadow: inset 0 0 0 1px #1a1818;
+                    outline: none;
+                    transition: --gradient-angle-offset-mobile 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-percent-mobile 800ms cubic-bezier(0.25, 1, 0.5, 1), --gradient-shine-mobile 800ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s;
+                    cursor: pointer;
+                    isolation: isolate;
+                    outline-offset: 4px;
+                    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+                    z-index: 0;
+                    animation: border-spin-mobile 2.5s linear infinite;
+                    width: 100%;
+                    text-align: center;
+                  }
+
+                  @keyframes border-spin-mobile {
+                    to {
+                      --gradient-angle-mobile: 360deg;
+                    }
+                  }
+
+                  .shiny-cta-mobile:active {
+                    transform: translateY(1px);
+                  }
+
+                  .shiny-cta-mobile::before {
+                    content: '';
+                    pointer-events: none;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 0;
+                    --size: calc(100% - 5px);
+                    --position: 2px;
+                    --space: 4px;
+                    width: var(--size);
+                    height: var(--size);
+                    background: radial-gradient(circle at var(--position) var(--position), white 0.5px, transparent 0) padding-box;
+                    background-size: var(--space) var(--space);
+                    background-repeat: space;
+                    mask-image: conic-gradient(from calc(var(--gradient-angle-mobile) + 45deg), black, transparent 10% 90%, black);
+                    border-radius: inherit;
+                    opacity: 0.4;
+                    pointer-events: none;
+                  }
+
+                  .shiny-cta-mobile::after {
+                    content: '';
+                    pointer-events: none;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 1;
+                    width: 100%;
+                    aspect-ratio: 1;
+                    background: linear-gradient(-50deg, transparent, #1d4ed8, transparent);
+                    mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+                    opacity: 0.6;
+                    animation: shimmer-mobile 4s linear infinite;
+                    animation-play-state: running;
+                  }
+
+                  @keyframes shimmer-mobile {
+                    to {
+                      transform: translate(-50%, -50%) rotate(360deg);
+                    }
+                  }
+
+                  @keyframes breathe-mobile {
+                    0%, 100% {
+                      transform: translate(-50%, -50%) scale(1);
+                    }
+                    50% {
+                      transform: translate(-50%, -50%) scale(1.20);
+                    }
+                  }
+
+                  .shiny-cta-mobile span {
+                    position: relative;
+                    z-index: 2;
+                    display: inline-block;
+                  }
+
+                  .shiny-cta-mobile span::before {
+                    content: '';
+                    pointer-events: none;
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: -1;
+                    --size: calc(100% + 0.75rem);
+                    width: var(--size);
+                    height: var(--size);
+                    box-shadow: inset 0 -0.8ex 1.6rem 3px #1d4ed8;
+                    opacity: 0;
+                    border-radius: inherit;
+                    transition: opacity 800ms cubic-bezier(0.25, 1, 0.5, 1);
+                    animation: breathe-mobile 4.5s linear infinite;
+                  }
+                </style>
+                <button id="consultation-btn-menu" class="shiny-cta-mobile focus:outline-none">
+                  <span>Book Free Consultation</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -367,33 +536,54 @@
       document.addEventListener('DOMContentLoaded', function() {
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuPanel = mobileMenu.querySelector('div:last-child');
+        const mobileMenuBackdrop = mobileMenu.querySelector('div:first-child');
         const closeMenuButton = document.getElementById('close-menu');
 
         // Open mobile menu
         mobileMenuButton.addEventListener('click', function() {
           mobileMenu.classList.remove('hidden');
           document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+          // Trigger animation
+          setTimeout(() => {
+            mobileMenuBackdrop.classList.add('opacity-100');
+            mobileMenuPanel.classList.remove('translate-x-full');
+          }, 10);
         });
 
         // Close mobile menu
         closeMenuButton.addEventListener('click', function() {
-          mobileMenu.classList.add('hidden');
-          document.body.style.overflow = ''; // Re-enable scrolling
+          mobileMenuBackdrop.classList.remove('opacity-100');
+          mobileMenuPanel.classList.add('translate-x-full');
+
+          setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = ''; // Re-enable scrolling
+          }, 300);
         });
 
-        // Close menu when clicking outside
-        mobileMenu.addEventListener('click', function(e) {
-          if (e.target === mobileMenu) {
+        // Close menu when clicking backdrop
+        mobileMenuBackdrop.addEventListener('click', function() {
+          mobileMenuBackdrop.classList.remove('opacity-100');
+          mobileMenuPanel.classList.add('translate-x-full');
+
+          setTimeout(() => {
             mobileMenu.classList.add('hidden');
-            document.body.style.overflow = '';
-          }
+            document.body.style.overflow = ''; // Re-enable scrolling
+          }, 300);
         });
 
         // Close menu on escape key
         document.addEventListener('keydown', function(e) {
           if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-            mobileMenu.classList.add('hidden');
-            document.body.style.overflow = '';
+            mobileMenuBackdrop.classList.remove('opacity-100');
+            mobileMenuPanel.classList.add('translate-x-full');
+
+            setTimeout(() => {
+              mobileMenu.classList.add('hidden');
+              document.body.style.overflow = ''; // Re-enable scrolling
+            }, 300);
           }
         });
 
