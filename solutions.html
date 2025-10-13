@@ -1,7 +1,7 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nova — Think clearly. Capture instantly.</title>
-<meta name="description" content="Nova helps you capture ideas, link them effortlessly, and recall anything in milliseconds.">
+<title>SOFTSMARK — AI Automation & Software Solutions</title>
+<meta name="description" content="Discover SOFTSMARK's comprehensive solutions: AI automation, custom software development, mobile apps, web platforms, AI chatbots, and professional AI services.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
@@ -254,91 +254,7 @@
       </div>
     </header>
 
-    <!-- Consultation Modal -->
-    <div id="consultation-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md hidden z-[100] flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
-      <div class="bg-[#0a0a12] rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl border border-white/10 transform transition-all duration-300 ease-out scale-95">
-        <button id="close-consultation-modal" class="absolute top-4 right-4 text-zinc-400 hover:text-white z-[110]">
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-        <div id="contact" class="p-6 md:p-8 bg-transparent border-none rounded-none mt-0">
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="space-y-4">
-              <div class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20 px-2.5 py-1 text-xs">
-                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                Booking Q4
-              </div>
-              <h4 class="text-white font-semibold tracking-tight">Start a project</h4>
-              <ul class="space-y-2 text-sm text-neutral-300">
-                <li class="flex items-start gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5" class=""></path></svg>
-                  <span class="">Senior engineers and designers only — no handoffs, no fluff.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5" class=""></path></svg>
-                  <span class="">Transparent weekly demos, metrics, and delivery plans.</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5" class=""></path></svg>
-                  <span class="">Security, accessibility, and performance baked-in.</span>
-                </li>
-              </ul>
-              <div class="flex items-center gap-3 pt-2 text-sm">
-                <a href="mailto:hello@relay.dev" class="inline-flex items-center gap-2 text-white hover:text-amber-300 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="mail" class="lucide lucide-mail w-4 h-4"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" class=""></path><rect x="2" y="4" width="20" height="16" rx="2" class=""></rect></svg>
-                  hello@relay.dev
-                </a>
-                <span class="text-white/20">•</span>
-                <a href="tel:+14155551234" class="inline-flex items-center gap-2 text-white hover:text-amber-300 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="phone" class="lucide lucide-phone w-4 h-4"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" class=""></path></svg>
-                  +1 (415) 555‑1234
-                </a>
-              </div>
-            </div>
-            <form id="contact-form" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div class="sm:col-span-1">
-                <label for="name" class="block text-xs font-medium text-white/80 mb-1">Your name</label>
-                <input id="name" name="name" type="text" required="" placeholder="Jane Doe" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
-              </div>
-              <div class="sm:col-span-1">
-                <label for="email" class="block text-xs font-medium text-white/80 mb-1">Email</label>
-                <input id="email" name="email" type="email" required="" placeholder="jane@company.com" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
-              </div>
-              <div class="sm:col-span-1">
-                <label for="company" class="block text-xs font-medium text-white/80 mb-1">Company</label>
-                <input id="company" name="company" type="text" placeholder="Acme Inc." class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
-              </div>
-              <div class="sm:col-span-1">
-                <label for="project-type" class="block text-xs font-medium text-white/80 mb-1">Project type</label>
-                <select id="project-type" name="projectType" class="w-full appearance-none outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
-                  <option class="bg-neutral-900" value="product">New product build</option>
-                  <option class="bg-neutral-900" value="feature">Feature delivery</option>
-                  <option class="bg-neutral-900" value="advisory">Advisory / audit</option>
-                  <option class="bg-neutral-900" value="ai">AI integration</option>
-                </select>
-              </div>
-              <div class="sm:col-span-2">
-                <label for="message" class="block text-xs font-medium text-white/80 mb-1">What are you building?</label>
-                <textarea id="message" name="message" rows="4" placeholder="A few sentences about your goals, timeline, and success metrics." class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3"></textarea>
-              </div>
-              <div class="sm:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <div class="flex gap-2 text-xs text-white/70 items-center">
-                  <input id="nda" name="nda" type="checkbox" class="h-4 w-4 rounded bg-white/10 border-white/20 text-amber-400 focus:ring-amber-400/60">
-                  <label for="nda" class="">Please send an NDA</label>
-                </div>
-                <div class="flex items-center gap-2">
-                  <button type="submit" class="inline-flex gap-2 ring-1 ring-amber-300 hover:bg-amber-300 transition text-sm font-medium text-neutral-900 bg-amber-400 rounded-xl pt-2.5 pr-4 pb-2.5 pl-4 shadow items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="send" class="lucide lucide-send w-4 h-4"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z" class=""></path><path d="m21.854 2.147-10.94 10.939" class=""></path></svg>
-                    Send request
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Consultation Modal will be loaded here -->
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="fixed inset-0 z-50 md:hidden">
@@ -591,50 +507,52 @@
           }
         });
 
-        // Consultation modal functionality
-        const consultationModal = document.getElementById('consultation-modal');
-        const closeConsultationModal = document.getElementById('close-consultation-modal');
-        const consultationBtns = document.querySelectorAll('#consultation-btn-mobile, #consultation-btn-desktop, #consultation-btn-menu');
-        consultationBtns.forEach(btn => {
-          btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            consultationModal.classList.remove('hidden');
-            setTimeout(() => {
-              consultationModal.classList.add('opacity-100');
-              consultationModal.querySelector('div').classList.remove('scale-95');
-            }, 10);
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        // Function to set up consultation modal functionality
+        function setupConsultationModal() {
+          const consultationModal = document.getElementById('consultation-modal');
+          const closeConsultationModal = document.getElementById('close-consultation-modal');
+          const consultationBtns = document.querySelectorAll('#consultation-btn-mobile, #consultation-btn-desktop, #consultation-btn-menu, [data-consultation-btn]');
+          consultationBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              consultationModal.classList.remove('hidden');
+              setTimeout(() => {
+                consultationModal.classList.add('opacity-100');
+                consultationModal.querySelector('div').classList.remove('scale-95');
+              }, 1);
+              document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            });
           });
-        });
-        closeConsultationModal.addEventListener('click', function() {
-          consultationModal.classList.remove('opacity-100');
-          consultationModal.querySelector('div').classList.add('scale-95');
-          setTimeout(() => {
-            consultationModal.classList.add('hidden');
-          }, 300);
-          document.body.style.overflow = ''; // Re-enable scrolling
-        });
-        consultationModal.addEventListener('click', function(e) {
-          if (e.target === consultationModal) {
+          closeConsultationModal.addEventListener('click', function() {
             consultationModal.classList.remove('opacity-100');
             consultationModal.querySelector('div').classList.add('scale-95');
             setTimeout(() => {
               consultationModal.classList.add('hidden');
-            }, 300);
-            document.body.style.overflow = '';
-          }
-        });
-        // Close modal on escape key
-        document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && !consultationModal.classList.contains('hidden')) {
-            consultationModal.classList.remove('opacity-100');
-            consultationModal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => {
-              consultationModal.classList.add('hidden');
-            }, 300);
-            document.body.style.overflow = '';
-          }
-        });
+            }, 150);
+            document.body.style.overflow = ''; // Re-enable scrolling
+          });
+          consultationModal.addEventListener('click', function(e) {
+            if (e.target === consultationModal) {
+              consultationModal.classList.remove('opacity-100');
+              consultationModal.querySelector('div').classList.add('scale-95');
+              setTimeout(() => {
+                consultationModal.classList.add('hidden');
+              }, 150);
+              document.body.style.overflow = '';
+            }
+          });
+          // Close modal on escape key
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !consultationModal.classList.contains('hidden')) {
+              consultationModal.classList.remove('opacity-100');
+              consultationModal.querySelector('div').classList.add('scale-95');
+              setTimeout(() => {
+                consultationModal.classList.add('hidden');
+              }, 150);
+              document.body.style.overflow = '';
+            }
+          });
+        }
       });
     </script>
 
@@ -644,17 +562,17 @@
         <div class="flex flex-col xl:ml-0 text-left mr-0 sm:mr-auto mb-30 ml-4 sm:ml-0 space-y-6 items-start"><div class="mb-6">
             <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-200 backdrop-blur">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="sparkles" class="lucide lucide-sparkles h-3.5 w-3.5 text-violet-300"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>
-              New: Realtime graph sync just landed
+              New: AI Integration Services Now Available
             </span>
           </div><h1 class="sm:text-6xl md:text-7xl md:text-left text-4xl font-semibold text-white tracking-tight">
-  Smarter notes, instantly
+  Comprehensive <span class="bg-gradient-to-r from-violet-500 to-indigo-600 bg-clip-text text-transparent">AI Solutions</span>
 </h1><p class="text-base text-zinc-300 max-w-2xl mt-0 sm:text-lg sm:text-left">
-            Capture ideas, connect them with backlinks, and recall anything in milliseconds—across devices, offline-first.
+            Discover our full range of services: from AI automation and custom software to mobile apps, web platforms, and intelligent AI integrations.
           </p><div class="flex gap-3 mb-0 pb-[60px] gap-x-3 gap-y-3 items-center justify-start">
-            <a href="consultation/freetrail.html" class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75" style="">Start free trial<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
-            <a href="#" class="inline-flex items-center gap-2 hover:bg-white/5 text-sm font-medium text-zinc-200 border-white/10 border rounded-full pt-2.5 pr-5 pb-2.5 pl-5 backdrop-blur-lg">
+            <a href="#" data-consultation-btn class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75" style="">Start free consultation<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            <a href="#" onclick="openVideoModal()" class="inline-flex items-center gap-2 hover:bg-white/5 text-sm font-medium text-zinc-200 border-white/10 border rounded-full pt-2.5 pr-5 pb-2.5 pl-5 backdrop-blur-lg">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play h-4 w-4"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
-              Watch demo
+              Watch solution demos
             </a>
           </div></div>
 
@@ -1077,22 +995,22 @@
     <!-- Solutions grid -->
     <section class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div class="mx-auto max-w-3xl text-center mb-10">
-        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Explore solution areas</h2>
-        <p class="mt-3 text-zinc-300">Pick a starting point or mix and match. We’ll tailor a roadmap to your goals and team.</p>
+        <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Our AI & Software Solutions</h2>
+        <p class="mt-3 text-zinc-300">Transform your business with cutting-edge AI automation and custom software development. From intelligent chatbots to scalable web platforms, we deliver solutions that drive growth.</p>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <a href="#" class="group ring-1 ring-white/10 bg-white/5 rounded-2xl p-5 backdrop-blur hover:bg-white/10 transition">
           <div class="flex items-center gap-3">
             <span class="h-9 w-9 rounded-lg ring-1 ring-white/20 bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3h12"></path><path d="M6 8h12"></path><path d="M6 13h12"></path><path d="M6 18h12"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
             </span>
-            <h3 class="text-white font-medium">Operations Optimization</h3>
+            <h3 class="text-white font-medium">AI Automation</h3>
           </div>
-          <p class="mt-3 text-sm text-zinc-300">Automate routine work, standardize SOPs, and reduce cycle time.</p>
+          <p class="mt-3 text-sm text-zinc-300">Streamline operations with intelligent automation powered by advanced AI algorithms.</p>
           <ul class="mt-3 text-xs text-zinc-400 space-y-1.5">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-blue-400"></span>Workflow orchestration</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-blue-400"></span>Approvals &amp; SLAs</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-blue-400"></span>Process automation</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-blue-400"></span>Workflow optimization</li>
           </ul>
           <div class="mt-4 text-sm text-violet-300 group-hover:text-violet-200">Learn more →</div>
         </a>
@@ -1100,14 +1018,14 @@
         <a href="#" class="group ring-1 ring-white/10 bg-white/5 rounded-2xl p-5 backdrop-blur hover:bg-white/10 transition">
           <div class="flex items-center gap-3">
             <span class="h-9 w-9 rounded-lg ring-1 ring-white/20 bg-gradient-to-br from-fuchsia-500 to-violet-600 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 18v-6a9 9 0 1 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 2z"></path><path d="M3 19a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 2z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 18h.01"></path><path d="M8 21h8a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2z"></path></svg>
             </span>
-            <h3 class="text-white font-medium">Customer Experience</h3>
+            <h3 class="text-white font-medium">Mobile App Development</h3>
           </div>
-          <p class="mt-3 text-sm text-zinc-300">Reduce response times and improve CSAT with automation and insight.</p>
+          <p class="mt-3 text-sm text-zinc-300">Native and cross-platform mobile applications that deliver exceptional user experiences.</p>
           <ul class="mt-3 text-xs text-zinc-400 space-y-1.5">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span>Omnichannel routing</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span>Self-serve &amp; macros</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span>iOS & Android apps</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-fuchsia-400"></span>Cross-platform solutions</li>
           </ul>
           <div class="mt-4 text-sm text-violet-300 group-hover:text-violet-200">Learn more →</div>
         </a>
@@ -1115,14 +1033,14 @@
         <a href="#" class="group ring-1 ring-white/10 bg-white/5 rounded-2xl p-5 backdrop-blur hover:bg-white/10 transition">
           <div class="flex items-center gap-3">
             <span class="h-9 w-9 rounded-lg ring-1 ring-white/20 bg-gradient-to-br from-sky-400 to-indigo-500 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
             </span>
-            <h3 class="text-white font-medium">Sales Enablement</h3>
+            <h3 class="text-white font-medium">Web Applications</h3>
           </div>
-          <p class="mt-3 text-sm text-zinc-300">Give reps the playbooks, content, and signals that convert.</p>
+          <p class="mt-3 text-sm text-zinc-300">Scalable web platforms and applications built with modern frameworks and technologies.</p>
           <ul class="mt-3 text-xs text-zinc-400 space-y-1.5">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>Lead scoring &amp; SLAs</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>Asset analytics</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>Progressive web apps</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-sky-400"></span>E-commerce platforms</li>
           </ul>
           <div class="mt-4 text-sm text-violet-300 group-hover:text-violet-200">Learn more →</div>
         </a>
@@ -1130,14 +1048,14 @@
         <a href="#" class="group ring-1 ring-white/10 bg-white/5 rounded-2xl p-5 backdrop-blur hover:bg-white/10 transition">
           <div class="flex items-center gap-3">
             <span class="h-9 w-9 rounded-lg ring-1 ring-white/20 bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 12V7a2 2 0 0 0-2-2H6a4 4 0 0 0-4 4v7a2 2 0 0 0 2 2h16"></path><path d="M18 12h2a2 2 0 0 1 0 4h-2z"></path><path d="M8 7V5a2 2 0 0 1 2-2h8"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
             </span>
-            <h3 class="text-white font-medium">Finance &amp; Spend</h3>
+            <h3 class="text-white font-medium">Custom Software</h3>
           </div>
-          <p class="mt-3 text-sm text-zinc-300">Real-time visibility, budgets, and automated approvals.</p>
+          <p class="mt-3 text-sm text-zinc-300">Tailored software solutions designed to meet your unique business requirements and challenges.</p>
           <ul class="mt-3 text-xs text-zinc-400 space-y-1.5">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-purple-400"></span>Spend alerts</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-purple-400"></span>Close acceleration</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-purple-400"></span>Enterprise applications</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-purple-400"></span>System integrations</li>
           </ul>
           <div class="mt-4 text-sm text-violet-300 group-hover:text-violet-200">Learn more →</div>
         </a>
@@ -1145,14 +1063,14 @@
         <a href="#" class="group ring-1 ring-white/10 bg-white/5 rounded-2xl p-5 backdrop-blur hover:bg-white/10 transition">
           <div class="flex items-center gap-3">
             <span class="h-9 w-9 rounded-lg ring-1 ring-white/20 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h6v10H3z"></path><path d="M15 7h6v10h-6z"></path><path d="M9 7h6v10H9z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
             </span>
-            <h3 class="text-white font-medium">Inventory &amp; Supply</h3>
+            <h3 class="text-white font-medium">AI Chatbots</h3>
           </div>
-          <p class="mt-3 text-sm text-zinc-300">Forecast demand and align replenishment to reduce stockouts.</p>
+          <p class="mt-3 text-sm text-zinc-300">Intelligent conversational AI assistants that enhance customer support and engagement.</p>
           <ul class="mt-3 text-xs text-zinc-400 space-y-1.5">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-orange-400"></span>Demand planning</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-orange-400"></span>Supplier SLAs</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-orange-400"></span>Customer support bots</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-orange-400"></span>Virtual assistants</li>
           </ul>
           <div class="mt-4 text-sm text-violet-300 group-hover:text-violet-200">Learn more →</div>
         </a>
@@ -1160,14 +1078,14 @@
         <a href="#" class="group ring-1 ring-white/10 bg-white/5 rounded-2xl p-5 backdrop-blur hover:bg-white/10 transition">
           <div class="flex items-center gap-3">
             <span class="h-9 w-9 rounded-lg ring-1 ring-white/20 bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 2v4"></path><path d="M8 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path><circle cx="16" cy="16" r="6"></circle><path d="M16 14v2l1 1"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12h6"></path><path d="M12 9v6"></path><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c2.49 0 4.75.99 6.38 2.59"></path><path d="M21 3v6h-6"></path></svg>
             </span>
-            <h3 class="text-white font-medium">Scheduling &amp; Workforce</h3>
+            <h3 class="text-white font-medium">AI Integrations</h3>
           </div>
-          <p class="mt-3 text-sm text-zinc-300">Balance workloads with shared calendars and capacity insights.</p>
+          <p class="mt-3 text-sm text-zinc-300">Seamlessly integrate AI capabilities into your existing systems and workflows.</p>
           <ul class="mt-3 text-xs text-zinc-400 space-y-1.5">
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Capacity planning</li>
-            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Shift templates</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>API integrations</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>Third-party AI services</li>
           </ul>
           <div class="mt-4 text-sm text-violet-300 group-hover:text-violet-200">Learn more →</div>
         </a>
@@ -1177,15 +1095,15 @@
 <section class="relative z-10 mt-10 animate-fade-in-up">
       <div class="max-w-5xl sm:px-6 lg:px-8 mr-auto ml-auto pr-4 pb-20 pl-4">
         <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/70 to-zinc-900/40 p-8 text-center backdrop-blur">
-          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Start organizing your ideas today</h2>
-          <p class="mt-2 text-zinc-300">Free for individuals. Upgrade when you’re ready to scale.</p>
+          <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Ready to Transform Your Business?</h2>
+          <p class="mt-2 text-zinc-300">Start your AI and software development journey with SOFTSMARK. Get a free consultation today.</p>
           <div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="#" class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75">
-              Create your workspace
+            <a href="#" data-consultation-btn class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75">
+              Start free consultation
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
             </a>
-            <a href="#" class="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:bg-white/5">
-              Compare plans
+            <a href="pricing.html" class="inline-flex items-center gap-2 rounded-full border border-white/10 px-5 py-2.5 text-sm font-medium text-zinc-200 hover:bg-white/5">
+              View pricing
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="credit-card" class="lucide lucide-credit-card h-4 w-4"><rect width="20" height="14" x="2" y="5" rx="2"></rect><line x1="2" x2="22" y1="10" y2="10"></line></svg>
             </a>
           </div>
@@ -1329,6 +1247,17 @@
     <script>
       window.addEventListener('DOMContentLoaded', () => {
         lucide.createIcons();
+
+        // Load consultation modal from separate file
+        fetch('consultation/consultation-modal.html')
+          .then(response => response.text())
+          .then(html => {
+            document.body.insertAdjacentHTML('beforeend', html);
+            
+            // Set up consultation modal functionality after it's loaded
+            setupConsultationModal();
+          })
+          .catch(error => console.error('Error loading consultation modal:', error));
       });
 
       function openModal(type) {
@@ -1368,6 +1297,44 @@
           });
         }
       });
+
+      // Video Modal Functions
+      function openVideoModal() {
+        const modal = document.getElementById('video-modal');
+        const iframe = document.getElementById('video-iframe');
+        // Replace with your actual video URL
+        iframe.src = 'https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&rel=0';
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeVideoModal() {
+        const modal = document.getElementById('video-modal');
+        const iframe = document.getElementById('video-iframe');
+        modal.classList.add('hidden');
+        iframe.src = '';
+        document.body.style.overflow = 'auto';
+      }
     </script>
-  
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeVideoModal()"></div>
+      <div class="relative flex items-center justify-center min-h-screen p-2 sm:p-4">
+        <div class="bg-zinc-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl max-h-[95vh] sm:max-h-[90vh] overflow-hidden">
+          <div class="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
+            <h3 class="text-lg sm:text-xl font-semibold text-white">Product Demo</h3>
+            <button onclick="closeVideoModal()" class="text-zinc-400 hover:text-white transition-colors p-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x h-5 w-5 sm:h-6 sm:w-6"><path d="M18 6L6 18"></path><path d="M6 6l12 12"></path></svg>
+            </button>
+          </div>
+          <div class="p-2 sm:p-4 md:p-6">
+            <div class="aspect-video bg-black rounded-lg overflow-hidden">
+              <iframe id="video-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body></html>
