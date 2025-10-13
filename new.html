@@ -11,6 +11,20 @@
 
     <style>
       @keyframes steam { 0%{background-position:0% 0%} 50%{background-position:400% 0%} 100%{background-position:0% 0%} }
+      /* Form animation */
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+      }
     </style>
 
 
@@ -626,7 +640,7 @@
     </script>
 
     <!-- Hero -->
-    <section class="z-10 bg-[#000000] relative">
+    <section class="z-10 bg-[#000000] relative animate-fade-in-up">
       <div class="sm:px-6 lg:px-8 sm:pt-16 bg-[url(https://s.mj.run/0i_tDBV5Cqk?w=800&amp;q=80)] max-w-6xl bg-cover mt-0 mr-auto mb-0 ml-auto pt-16 pr-0 pl-0">
         <div class="flex flex-col xl:ml-0 text-left mr-0 sm:mr-auto mb-30 ml-4 sm:ml-0 space-y-6 items-start"><div class="mb-6">
             <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-200 backdrop-blur">
@@ -638,7 +652,7 @@
 </h1><p class="text-base text-zinc-300 max-w-2xl mt-0 sm:text-lg sm:text-left">
             Capture ideas, connect them with backlinks, and recall anything in milliseconds—across devices, offline-first.
           </p><div class="flex gap-3 mb-0 pb-[60px] gap-x-3 gap-y-3 items-center justify-start">
-            <a href="#" class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75" style="">Start free trial<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            <a href="consultation/freetrail.html" class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75" style="">Start free trial<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
             <a href="#" class="inline-flex items-center gap-2 hover:bg-white/5 text-sm font-medium text-zinc-200 border-white/10 border rounded-full pt-2.5 pr-5 pb-2.5 pl-5 backdrop-blur-lg">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play h-4 w-4"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
               Watch demo
@@ -1058,7 +1072,7 @@
         </div>
       </div>
     </section>
-<section class="relative z-10 mt-10">
+<section class="relative z-10 mt-10 animate-fade-in-up">
       <div class="max-w-5xl sm:px-6 lg:px-8 mr-auto ml-auto pr-4 pb-20 pl-4">
         <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/70 to-zinc-900/40 p-8 text-center backdrop-blur">
           <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Start organizing your ideas today</h2>

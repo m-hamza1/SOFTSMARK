@@ -39,6 +39,20 @@
         50% { background-position: 400% 0%; }
         100% { background-position: 0% 0%; }
       }
+      /* Form animation */
+      @keyframes fadeInUp {
+        0% {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+      }
     </style>
 
 
@@ -501,7 +515,7 @@
     </script>
 
     <!-- Hero -->
-    <section class="z-10 bg-[#000000] relative">
+    <section class="z-10 bg-[#000000] relative animate-fade-in-up">
       <div class="sm:px-6 lg:px-8 sm:pt-16 bg-[url(https://s.mj.run/0i_tDBV5Cqk?w=800&amp;q=80)] max-w-6xl bg-cover mt-0 mr-auto mb-0 ml-auto pt-16 pr-0 pl-0">
         <div class="flex flex-col xl:ml-0 text-left mr-0 sm:mr-auto mb-30 ml-4 sm:ml-0 space-y-6 items-start"><div class="mb-6">
             <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-200 backdrop-blur">
@@ -1298,7 +1312,7 @@
       </article>
     </div>
   </div>
-</section><section class="relative z-10 mt-10">
+</section><section class="relative z-10 mt-10 animate-fade-in-up">
       <div class="max-w-5xl sm:px-6 lg:px-8 mr-auto ml-auto pr-4 pb-20 pl-4">
         <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/70 to-zinc-900/40 p-8 text-center backdrop-blur">
           <h2 class="text-3xl sm:text-4xl font-semibold tracking-tight text-white">Start organizing your ideas today</h2>
