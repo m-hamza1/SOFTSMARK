@@ -509,44 +509,45 @@
         // Function to set up consultation modal functionality
         function setupConsultationModal() {
           const consultationModal = document.getElementById('consultation-modal');
+          const modalContent = consultationModal.querySelector('.fixed');
           const closeConsultationModal = document.getElementById('close-consultation-modal');
           const consultationBtns = document.querySelectorAll('#consultation-btn-mobile, #consultation-btn-desktop, #consultation-btn-menu, [data-consultation-btn]');
           consultationBtns.forEach(btn => {
             btn.addEventListener('click', function(e) {
               e.preventDefault();
-              consultationModal.classList.remove('hidden');
+              modalContent.classList.remove('hidden');
               setTimeout(() => {
-                consultationModal.classList.add('opacity-100');
-                consultationModal.querySelector('div').classList.remove('scale-95');
+                modalContent.classList.add('opacity-100');
+                modalContent.querySelector('div').classList.remove('scale-95');
               }, 1);
               document.body.style.overflow = 'hidden'; // Prevent background scrolling
             });
           });
           closeConsultationModal.addEventListener('click', function() {
-            consultationModal.classList.remove('opacity-100');
-            consultationModal.querySelector('div').classList.add('scale-95');
+            modalContent.classList.remove('opacity-100');
+            modalContent.querySelector('div').classList.add('scale-95');
             setTimeout(() => {
-              consultationModal.classList.add('hidden');
+              modalContent.classList.add('hidden');
             }, 150);
             document.body.style.overflow = ''; // Re-enable scrolling
           });
-          consultationModal.addEventListener('click', function(e) {
-            if (e.target === consultationModal) {
-              consultationModal.classList.remove('opacity-100');
-              consultationModal.querySelector('div').classList.add('scale-95');
+          modalContent.addEventListener('click', function(e) {
+            if (e.target === modalContent) {
+              modalContent.classList.remove('opacity-100');
+              modalContent.querySelector('div').classList.add('scale-95');
               setTimeout(() => {
-                consultationModal.classList.add('hidden');
+                modalContent.classList.add('hidden');
               }, 150);
               document.body.style.overflow = '';
             }
           });
           // Close modal on escape key
           document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && !consultationModal.classList.contains('hidden')) {
-              consultationModal.classList.remove('opacity-100');
-              consultationModal.querySelector('div').classList.add('scale-95');
+            if (e.key === 'Escape' && !modalContent.classList.contains('hidden')) {
+              modalContent.classList.remove('opacity-100');
+              modalContent.querySelector('div').classList.add('scale-95');
               setTimeout(() => {
-                consultationModal.classList.add('hidden');
+                modalContent.classList.add('hidden');
               }, 150);
               document.body.style.overflow = '';
             }
@@ -1137,123 +1138,10 @@
       </div>
     </div>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        lucide.createIcons();
+    <!-- Consultation Modal will be loaded here -->
 
-        // Load consultation modal from separate file
-        fetch('consultation/consultation-modal.html')
-          .then(response => response.text())
-          .then(html => {
-            document.body.insertAdjacentHTML('beforeend', html);
-            
-            // Set up consultation modal functionality after it's loaded
-            setupConsultationModal();
-          })
-          .catch(error => console.error('Error loading consultation modal:', error));
-      });
+    <!-- Video Modal -->
 
-      function openModal(type) {
-        const modal = document.getElementById(type + '-modal');
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal(type) {
-        const modal = document.getElementById(type + '-modal');
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }
-
-      // Close modal when clicking outside
-      document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('fixed')) {
-          const modals = document.querySelectorAll('[id$="-modal"]');
-          modals.forEach(modal => {
-            if (!modal.classList.contains('hidden')) {
-              modal.classList.add('hidden');
-              document.body.style.overflow = 'auto';
-            }
-          });
-        }
-      });
-
-      // Close modal with Escape key
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-          const modals = document.querySelectorAll('[id$="-modal"]');
-          modals.forEach(modal => {
-            if (!modal.classList.contains('hidden')) {
-              modal.classList.add('hidden');
-              document.body.style.overflow = 'auto';
-            }
-          });
-        }
-      });
-
-      // Video Modal Functions
-      function openVideoModal() {
-        const modal = document.getElementById('video-modal');
-        const iframe = document.getElementById('video-iframe');
-        // Replace with your actual video URL
-        iframe.src = 'https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&rel=0';
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeVideoModal() {
-        const modal = document.getElementById('video-modal');
-        const iframe = document.getElementById('video-iframe');
-        modal.classList.add('hidden');
-        iframe.src = '';
-        document.body.style.overflow = 'auto';
-      }
-
-      // Consultation modal functionality
-      const consultationModal = document.getElementById('consultation-modal');
-      const closeConsultationModal = document.getElementById('close-consultation-modal');
-      const consultationBtns = document.querySelectorAll('[data-consultation-btn]');
-      consultationBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          consultationModal.classList.remove('hidden');
-          setTimeout(() => {
-            consultationModal.classList.add('opacity-100');
-            consultationModal.querySelector('div').classList.remove('scale-95');
-          }, 10);
-          document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        });
-      });
-      closeConsultationModal.addEventListener('click', function() {
-        consultationModal.classList.remove('opacity-100');
-        consultationModal.querySelector('div').classList.add('scale-95');
-        setTimeout(() => {
-          consultationModal.classList.add('hidden');
-        }, 300);
-        document.body.style.overflow = ''; // Re-enable scrolling
-      });
-      consultationModal.addEventListener('click', function(e) {
-        if (e.target === consultationModal) {
-          consultationModal.classList.remove('opacity-100');
-          consultationModal.querySelector('div').classList.add('scale-95');
-          setTimeout(() => {
-            consultationModal.classList.add('hidden');
-          }, 300);
-          document.body.style.overflow = '';
-        }
-      });
-      // Close modal on escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !consultationModal.classList.contains('hidden')) {
-          consultationModal.classList.remove('opacity-100');
-          consultationModal.querySelector('div').classList.add('scale-95');
-          setTimeout(() => {
-            consultationModal.classList.add('hidden');
-          }, 300);
-          document.body.style.overflow = '';
-        }
-      });
     </script>
 
     <!-- Consultation Modal will be loaded here -->
@@ -1273,6 +1161,92 @@
             <div class="aspect-video bg-black rounded-lg overflow-hidden">
               <iframe id="video-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consultation Modal -->
+    <div id="consultation-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md hidden z-[100] flex items-center justify-center p-4 opacity-0 transition-opacity duration-150">
+      <div class="bg-[#0a0a12] rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl border border-white/10 transform transition-all duration-150 ease-out scale-95">
+        <button id="close-consultation-modal" class="absolute top-4 right-4 text-zinc-400 hover:text-white z-[110]">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div id="contact" class="p-6 md:p-8 bg-transparent border-none rounded-none mt-0">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="space-y-4">
+              <div class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20 px-2.5 py-1 text-xs">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Booking Q4
+              </div>
+              <h4 class="text-white font-semibold tracking-tight">Start a project</h4>
+              <ul class="space-y-2 text-sm text-neutral-300">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>Senior engineers and designers only — no handoffs, no fluff.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>Transparent weekly demos, metrics, and delivery plans.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>Security, accessibility, and performance baked-in.</span>
+                </li>
+              </ul>
+              <div class="flex items-center gap-3 pt-2 text-sm">
+                <a href="mailto:hello@relay.dev" class="inline-flex items-center gap-2 text-white hover:text-amber-300 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                  hello@relay.dev
+                </a>
+                <span class="text-white/20">•</span>
+                <a href="tel:+14155551234" class="inline-flex items-center gap-2 text-white hover:text-amber-300 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                  +1 (415) 555‑1234
+                </a>
+              </div>
+            </div>
+            <form id="contact-form" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-1">
+                <label for="name" class="block text-xs font-medium text-white/80 mb-1">Your name</label>
+                <input id="name" name="name" type="text" required="" placeholder="Jane Doe" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+              </div>
+              <div class="sm:col-span-1">
+                <label for="email" class="block text-xs font-medium text-white/80 mb-1">Email</label>
+                <input id="email" name="email" type="email" required="" placeholder="jane@company.com" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+              </div>
+              <div class="sm:col-span-1">
+                <label for="company" class="block text-xs font-medium text-white/80 mb-1">Company</label>
+                <input id="company" name="company" type="text" placeholder="Acme Inc." class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+              </div>
+              <div class="sm:col-span-1">
+                <label for="project-type" class="block text-xs font-medium text-white/80 mb-1">Project type</label>
+                <select id="project-type" name="projectType" class="w-full appearance-none outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+                  <option class="bg-neutral-900" value="product">New product build</option>
+                  <option class="bg-neutral-900" value="feature">Feature delivery</option>
+                  <option class="bg-neutral-900" value="advisory">Advisory / audit</option>
+                  <option class="bg-neutral-900" value="ai">AI integration</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="message" class="block text-xs font-medium text-white/80 mb-1">What are you building?</label>
+                <textarea id="message" name="message" rows="4" placeholder="A few sentences about your goals, timeline, and success metrics." class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3"></textarea>
+              </div>
+              <div class="sm:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div class="flex gap-2 text-xs text-white/70 items-center">
+                  <input id="nda" name="nda" type="checkbox" class="h-4 w-4 rounded bg-white/10 border-white/20 text-amber-400 focus:ring-amber-400/60">
+                  <label for="nda">Please send an NDA</label>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="submit" class="inline-flex gap-2 ring-1 ring-amber-300 hover:bg-amber-300 transition text-sm font-medium text-neutral-900 bg-amber-400 rounded-xl pt-2.5 pr-4 pb-2.5 pl-4 shadow items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+                    Send request
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

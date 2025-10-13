@@ -505,53 +505,6 @@
             }, 300);
           }
         });
-
-        // Function to set up consultation modal functionality
-        function setupConsultationModal() {
-          const consultationModal = document.getElementById('consultation-modal');
-          const closeConsultationModal = document.getElementById('close-consultation-modal');
-          const consultationBtns = document.querySelectorAll('#consultation-btn-mobile, #consultation-btn-desktop, #consultation-btn-menu, [data-consultation-btn]');
-          consultationBtns.forEach(btn => {
-            btn.addEventListener('click', function(e) {
-              e.preventDefault();
-              consultationModal.classList.remove('hidden');
-              setTimeout(() => {
-                consultationModal.classList.add('opacity-100');
-                consultationModal.querySelector('div').classList.remove('scale-95');
-              }, 1);
-              document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            });
-          });
-          closeConsultationModal.addEventListener('click', function() {
-            consultationModal.classList.remove('opacity-100');
-            consultationModal.querySelector('div').classList.add('scale-95');
-            setTimeout(() => {
-              consultationModal.classList.add('hidden');
-            }, 150);
-            document.body.style.overflow = ''; // Re-enable scrolling
-          });
-          consultationModal.addEventListener('click', function(e) {
-            if (e.target === consultationModal) {
-              consultationModal.classList.remove('opacity-100');
-              consultationModal.querySelector('div').classList.add('scale-95');
-              setTimeout(() => {
-                consultationModal.classList.add('hidden');
-              }, 150);
-              document.body.style.overflow = '';
-            }
-          });
-          // Close modal on escape key
-          document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && !consultationModal.classList.contains('hidden')) {
-              consultationModal.classList.remove('opacity-100');
-              consultationModal.querySelector('div').classList.add('scale-95');
-              setTimeout(() => {
-                consultationModal.classList.add('hidden');
-              }, 150);
-              document.body.style.overflow = '';
-            }
-          });
-        }
       });
     </script>
 
@@ -568,9 +521,9 @@
 </h1><p class="text-base text-zinc-300 max-w-2xl mt-0 sm:text-lg sm:text-left">
             Discover how SOFTSMARK transforms businesses with AI automation, custom software, and innovative mobile/web solutions that drive real results.
           </p><div class="flex gap-3 mb-0 pb-[60px] gap-x-3 gap-y-3 items-center justify-start">
-            <a href="#" data-consultation-btn class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75" style="">Start free consultation<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            <a href="#" data-consultation-btn class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75" style="">Start free consultation<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
             <a href="#" onclick="openVideoModal()" class="inline-flex items-center gap-2 hover:bg-white/5 text-sm font-medium text-zinc-200 border-white/10 border rounded-full pt-2.5 pr-5 pb-2.5 pl-5 backdrop-blur-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play h-4 w-4"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
               Watch project demos
             </a>
           </div></div>
@@ -962,9 +915,8 @@
         try {
           await navigator.clipboard.writeText(text);
           const original = shareBtn.innerHTML;
-          shareBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide h-4 w-4"><path d="M20 6 9 17l-5-5"></path></svg> Copied`;
-          if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
-          setTimeout(() => { shareBtn.innerHTML = original; if (window.lucide && window.lucide.createIcons) window.lucide.createIcons(); }, 1200);
+          shareBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4"><path d="M20 6 9 17l-5-5"></path></svg> Copied`;
+          setTimeout(() => { shareBtn.innerHTML = original; }, 1200);
         } catch {
           alert('Copy failed. You can share this date: ' + text);
         }
@@ -1402,57 +1354,99 @@
       </div>
     </div>
 
-    <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-      window.addEventListener('DOMContentLoaded', () => {
-        lucide.createIcons();
+      // Mobile menu functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize consultation modal
+        const consultationModal = document.getElementById('consultation-modal');
+        const closeConsultationModal = document.getElementById('close-consultation-modal');
+        const consultationBtns = document.querySelectorAll('#consultation-btn-desktop, #consultation-btn-mobile, #consultation-btn-menu, [data-consultation-btn]');
 
-        // Load consultation modal from separate file
-        fetch('consultation/consultation-modal.html')
-          .then(response => response.text())
-          .then(html => {
-            document.body.insertAdjacentHTML('beforeend', html);
-            
-            // Set up consultation modal functionality after it's loaded
-            setupConsultationModal();
-          })
-          .catch(error => console.error('Error loading consultation modal:', error));
-      });
+        if (consultationModal && closeConsultationModal) {
+          function openModal() {
+            consultationModal.classList.remove('hidden');
+            requestAnimationFrame(() => {
+              consultationModal.classList.add('opacity-100');
+              consultationModal.querySelector('div').classList.remove('scale-95');
+            });
+            document.body.style.overflow = 'hidden';
+          }
 
-      function openModal(type) {
-        const modal = document.getElementById(type + '-modal');
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
-      }
+          function closeModal() {
+            consultationModal.classList.remove('opacity-100');
+            consultationModal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+              consultationModal.classList.add('hidden');
+              document.body.style.overflow = '';
+            }, 300);
+          }
 
-      function closeModal(type) {
-        const modal = document.getElementById(type + '-modal');
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-      }
+          // Add click handlers to all consultation buttons
+          consultationBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              openModal();
+            });
+          });
 
-      // Close modal when clicking outside
-      document.addEventListener('click', function(event) {
-        if (event.target.classList.contains('fixed')) {
-          const modals = document.querySelectorAll('[id$="-modal"]');
-          modals.forEach(modal => {
-            if (!modal.classList.contains('hidden')) {
-              modal.classList.add('hidden');
-              document.body.style.overflow = 'auto';
+          // Close button handler
+          closeConsultationModal.addEventListener('click', closeModal);
+
+          // Click outside modal to close
+          consultationModal.addEventListener('click', function(e) {
+            if (e.target === consultationModal) {
+              closeModal();
+            }
+          });
+
+          // Escape key to close
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !consultationModal.classList.contains('hidden')) {
+              closeModal();
             }
           });
         }
-      });
 
-      // Close modal with Escape key
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape') {
-          const modals = document.querySelectorAll('[id$="-modal"]');
-          modals.forEach(modal => {
-            if (!modal.classList.contains('hidden')) {
-              modal.classList.add('hidden');
-              document.body.style.overflow = 'auto';
-            }
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuPanel = mobileMenu.querySelector('div:last-child');
+        const mobileMenuBackdrop = mobileMenu.querySelector('div:first-child');
+        const closeMenuButton = document.getElementById('close-menu');
+
+        // Open mobile menu
+        if (mobileMenuButton) {
+          mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+              mobileMenuBackdrop.classList.add('opacity-100');
+              mobileMenuPanel.classList.remove('translate-x-full');
+            }, 10);
+          });
+        }
+
+        // Close mobile menu
+        if (closeMenuButton) {
+          closeMenuButton.addEventListener('click', function() {
+            mobileMenuBackdrop.classList.remove('opacity-100');
+            mobileMenuPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+              mobileMenu.classList.add('hidden');
+              document.body.style.overflow = '';
+            }, 300);
+          });
+        }
+
+        // Close menu when clicking backdrop
+        if (mobileMenuBackdrop) {
+          mobileMenuBackdrop.addEventListener('click', function() {
+            mobileMenuBackdrop.classList.remove('opacity-100');
+            mobileMenuPanel.classList.add('translate-x-full');
+            setTimeout(() => {
+              mobileMenu.classList.add('hidden');
+              document.body.style.overflow = '';
+            }, 300);
           });
         }
       });
@@ -1474,51 +1468,6 @@
         iframe.src = '';
         document.body.style.overflow = 'auto';
       }
-
-      // Consultation modal functionality
-      const consultationModal = document.getElementById('consultation-modal');
-      const closeConsultationModal = document.getElementById('close-consultation-modal');
-      const consultationBtns = document.querySelectorAll('[data-consultation-btn]');
-      consultationBtns.forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          consultationModal.classList.remove('hidden');
-          setTimeout(() => {
-            consultationModal.classList.add('opacity-100');
-            consultationModal.querySelector('div').classList.remove('scale-95');
-          }, 10);
-          document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        });
-      });
-      closeConsultationModal.addEventListener('click', function() {
-        consultationModal.classList.remove('opacity-100');
-        consultationModal.querySelector('div').classList.add('scale-95');
-        setTimeout(() => {
-          consultationModal.classList.add('hidden');
-        }, 300);
-        document.body.style.overflow = ''; // Re-enable scrolling
-      });
-      consultationModal.addEventListener('click', function(e) {
-        if (e.target === consultationModal) {
-          consultationModal.classList.remove('opacity-100');
-          consultationModal.querySelector('div').classList.add('scale-95');
-          setTimeout(() => {
-            consultationModal.classList.add('hidden');
-          }, 300);
-          document.body.style.overflow = '';
-        }
-      });
-      // Close modal on escape key
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && !consultationModal.classList.contains('hidden')) {
-          consultationModal.classList.remove('opacity-100');
-          consultationModal.querySelector('div').classList.add('scale-95');
-          setTimeout(() => {
-            consultationModal.classList.add('hidden');
-          }, 300);
-          document.body.style.overflow = '';
-        }
-      });
     </script>
 
     <!-- Consultation Modal will be loaded here -->
@@ -1531,13 +1480,99 @@
           <div class="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
             <h3 class="text-lg sm:text-xl font-semibold text-white">Product Demo</h3>
             <button onclick="closeVideoModal()" class="text-zinc-400 hover:text-white transition-colors p-1">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x h-5 w-5 sm:h-6 sm:w-6"><path d="M18 6L6 18"></path><path d="M6 6l12 12"></path></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5 sm:h-6 sm:w-6"><path d="M18 6L6 18"></path><path d="M6 6l12 12"></path></svg>
             </button>
           </div>
           <div class="p-2 sm:p-4 md:p-6">
             <div class="aspect-video bg-black rounded-lg overflow-hidden">
               <iframe id="video-iframe" width="100%" height="100%" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Consultation Modal -->
+    <div id="consultation-modal" class="fixed inset-0 bg-black/70 backdrop-blur-md hidden z-[100] flex items-center justify-center p-4 opacity-0 transition-opacity duration-150">
+      <div class="bg-[#0a0a12] rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl border border-white/10 transform transition-all duration-150 ease-out scale-95">
+        <button id="close-consultation-modal" class="absolute top-4 right-4 text-zinc-400 hover:text-white z-[110]">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        <div id="contact" class="p-6 md:p-8 bg-transparent border-none rounded-none mt-0">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="space-y-4">
+              <div class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20 px-2.5 py-1 text-xs">
+                <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                Booking Q4
+              </div>
+              <h4 class="text-white font-semibold tracking-tight">Start a project</h4>
+              <ul class="space-y-2 text-sm text-neutral-300">
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>Senior engineers and designers only — no handoffs, no fluff.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>Transparent weekly demos, metrics, and delivery plans.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-emerald-400 mt-0.5"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span>Security, accessibility, and performance baked-in.</span>
+                </li>
+              </ul>
+              <div class="flex items-center gap-3 pt-2 text-sm">
+                <a href="mailto:hello@relay.dev" class="inline-flex items-center gap-2 text-white hover:text-amber-300 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+                  hello@relay.dev
+                </a>
+                <span class="text-white/20">•</span>
+                <a href="tel:+14155551234" class="inline-flex items-center gap-2 text-white hover:text-amber-300 transition">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>
+                  +1 (415) 555‑1234
+                </a>
+              </div>
+            </div>
+            <form id="contact-form" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="sm:col-span-1">
+                <label for="name" class="block text-xs font-medium text-white/80 mb-1">Your name</label>
+                <input id="name" name="name" type="text" required="" placeholder="Jane Doe" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+              </div>
+              <div class="sm:col-span-1">
+                <label for="email" class="block text-xs font-medium text-white/80 mb-1">Email</label>
+                <input id="email" name="email" type="email" required="" placeholder="jane@company.com" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+              </div>
+              <div class="sm:col-span-1">
+                <label for="company" class="block text-xs font-medium text-white/80 mb-1">Company</label>
+                <input id="company" name="company" type="text" placeholder="Acme Inc." class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+              </div>
+              <div class="sm:col-span-1">
+                <label for="project-type" class="block text-xs font-medium text-white/80 mb-1">Project type</label>
+                <select id="project-type" name="projectType" class="w-full appearance-none outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
+                  <option class="bg-neutral-900" value="product">New product build</option>
+                  <option class="bg-neutral-900" value="feature">Feature delivery</option>
+                  <option class="bg-neutral-900" value="advisory">Advisory / audit</option>
+                  <option class="bg-neutral-900" value="ai">AI integration</option>
+                </select>
+              </div>
+              <div class="sm:col-span-2">
+                <label for="message" class="block text-xs font-medium text-white/80 mb-1">What are you building?</label>
+                <textarea id="message" name="message" rows="4" placeholder="A few sentences about your goals, timeline, and success metrics." class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3"></textarea>
+              </div>
+              <div class="sm:col-span-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div class="flex gap-2 text-xs text-white/70 items-center">
+                  <input id="nda" name="nda" type="checkbox" class="h-4 w-4 rounded bg-white/10 border-white/20 text-amber-400 focus:ring-amber-400/60">
+                  <label for="nda">Please send an NDA</label>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button type="submit" class="inline-flex gap-2 ring-1 ring-amber-300 hover:bg-amber-300 transition text-sm font-medium text-neutral-900 bg-amber-400 rounded-xl pt-2.5 pr-4 pb-2.5 pl-4 shadow items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+                    Send request
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
