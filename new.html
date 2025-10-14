@@ -627,6 +627,44 @@
         iframe.src = '';
         document.body.style.overflow = 'auto';
       }
+
+      function openModal(type) {
+        const modal = document.getElementById(type + '-modal');
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal(type) {
+        const modal = document.getElementById(type + '-modal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+
+      // Close modal when clicking outside
+      document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('fixed')) {
+          const modals = document.querySelectorAll('[id$="-modal"]');
+          modals.forEach(modal => {
+            if (!modal.classList.contains('hidden')) {
+              modal.classList.add('hidden');
+              document.body.style.overflow = 'auto';
+            }
+          });
+        }
+      });
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+          const modals = document.querySelectorAll('[id$="-modal"]');
+          modals.forEach(modal => {
+            if (!modal.classList.contains('hidden')) {
+              modal.classList.add('hidden');
+              document.body.style.overflow = 'auto';
+            }
+          });
+        }
+      });
     </script>
     <section class="z-10 bg-[#000000] relative animate-fade-in-up">
       <div class="sm:px-6 lg:px-8 sm:pt-16 bg-[url(https://s.mj.run/0i_tDBV5Cqk?w=800&amp;q=80)] max-w-6xl bg-cover mt-0 mr-auto mb-0 ml-auto pt-16 pr-0 pl-0">
@@ -1322,5 +1360,12 @@
         </div>
       </div>
     </div>
+
+  <!-- Performance optimizers -->
+  <script src="components/scroll-performance.js" defer></script>
+  <script src="components/style-optimizer.js" defer></script>
+  <script src="components/animation-observer.js" defer></script>
+  <script src="components/custom-cursor.js" defer></script>
+
 
 </body></html>
