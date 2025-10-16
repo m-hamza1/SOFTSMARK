@@ -1,0 +1,23 @@
+<![CDATA[<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Handler</title>
+</head>
+<body>
+    <script>
+        // Load the form validation script
+        const script = document.createElement('script');
+        script.src = '/SOFTSMARK/assets/js/form-validation.js';
+        script.defer = true;
+        document.head.appendChild(script);
+
+        // Wait for the script to load
+        script.onload = function() {
+            // Trigger DOM content loaded event
+            document.dispatchEvent(new Event('DOMContentLoaded'));
+        };
+    </script>
+</body>
+</html>]]>

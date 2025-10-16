@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <div class="p-8">
+        <h1 class="text-2xl mb-4">Modal Test</h1>
+        <button data-quote-btn class="bg-blue-500 px-4 py-2 rounded">Get a Quote</button>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // Load quote modal
+            fetch('modals/quote-modal.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.body.insertAdjacentHTML('beforeend', html);
+                    console.log('Quote modal loaded');
+
+                    // Set up button after modal is loaded
+                    setupQuoteModal();
+                })
+                .catch(error => console.error('Error loading modal:', error));
+        });
+
+        function setupQuoteModal() {
+            const quoteModal = document.getElementById('quote-modal');
+            const closeQuoteModalBtn = document.getElementById('close-quote-modal');
+            const quoteBtns = document.querySelectorAll('[data-quote-btn]');
+
+            console.log('Setting up quote modal:', {
+                modal: quoteModal ? 'Found' : 'NOT FOUND',
+                closeBtn: closeQuoteModalBtn ? 'Found' : 'NOT FOUND',
+                buttons: quoteBtns.length
+            });
+
+            if (quoteModal && closeQuoteModalBtn) {
+                function openQuoteModal() {
+                    console.log('Opening quote modal');
+                    quoteModal.classList.remove('hidden');
+                    requestAnimationFrame(() => {
+                        quoteModal.classList.add('opacity-100');
+                        quoteModal.querySelector('div').classList.remove('scale-95');
+                    });
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeQuoteModal() {
+                    console.log('Closing quote modal');
+                    quoteModal.classList.remove('opacity-100');
+                    quoteModal.querySelector('div').classList.add('scale-95');
+                    setTimeout(() => {
+                        quoteModal.classList.add('hidden');
+                        document.body.style.overflow = '';
+                    }, 300);
+                }
+
+                // Add click handlers to all quote buttons
+                quoteBtns.forEach(btn => {
+                    console.log('Adding click handler to button');
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        console.log('Quote button clicked');
+                        openQuoteModal();
+                    });
+                });
+
+                // Close button handler
+                closeQuoteModalBtn.addEventListener('click', closeQuoteModal);
+
+                // Click outside modal to close
+                quoteModal.addEventListener('click', function(e) {
+                    if (e.target === quoteModal) {
+                        closeQuoteModal();
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html></content>
+<parameter name="filePath">c:\xampp1\htdocs\SOFTSMARK\test-modal.html

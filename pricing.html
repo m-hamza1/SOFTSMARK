@@ -34,6 +34,26 @@
       <div class="absolute bottom-0 right-0 w-[700px] h-[700px] translate-x-1/3 translate-y-1/3 rounded-full blur-3xl opacity-30 bg-[radial-gradient(closest-side,rgba(99,102,241,0.45),rgba(18,18,27,0))]"></div>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="fixed top-0 left-0 right-0 z-[200] hidden bg-emerald-500 text-white px-6 py-4 shadow-lg">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+          <div>
+            <h4 class="font-semibold text-lg">Consultation Request Sent Successfully!</h4>
+            <p class="text-sm opacity-90">Thank you for your interest in SOFTSMARK. We've received your consultation request and will get back to you within 24 hours. A confirmation email has been sent to your inbox.</p>
+          </div>
+        </div>
+        <button onclick="document.getElementById('toast-notification').classList.add('hidden')" class="text-white hover:text-emerald-200 ml-4">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <!-- Nav -->
     <header class="z-50 sticky border-white/5 border-b relative top-0 backdrop-blur-xl">
       <div class="border border-[#1a1a1a] rounded-full mt-4 mx-auto max-w-7xl px-4 md:px-8">
@@ -566,7 +586,7 @@
           const consultationBtns = document.querySelectorAll('#consultation-btn-mobile, #consultation-btn-desktop, #consultation-btn-menu, [data-consultation-btn]');
           consultationBtns.forEach(btn => {
             btn.addEventListener('click', function(e) {
-              e.preventDefault();
+              // e.preventDefault();
               modalContent.classList.remove('hidden');
               setTimeout(() => {
                 modalContent.classList.add('opacity-100');
@@ -604,6 +624,54 @@
               document.body.style.overflow = '';
             }
           });
+
+          // Handle consultation form submission
+          const contactForm = document.getElementById('contact-form');
+          if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              
+              const formData = new FormData(contactForm);
+              const submitButton = contactForm.querySelector('button[type="submit"]');
+              const originalText = submitButton.innerHTML;
+              
+              // Disable button and show loading state
+              submitButton.disabled = true;
+              submitButton.innerHTML = '<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+              
+              // Submit the form
+              fetch('send-consultation.php', {
+                method: 'POST',
+                body: formData
+              })
+              .then(response => response.text())
+              .then(result => {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+                
+                if (result.includes('Thank you')) {
+                  // Success
+                  alert(result);
+                  modalContent.classList.remove('opacity-100');
+                  modalContent.querySelector('div').classList.add('scale-95');
+                  setTimeout(() => {
+                    modalContent.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    contactForm.reset();
+                  }, 300);
+                } else {
+                  alert(result || 'There was an error sending your consultation request. Please try again.');
+                }
+              })
+              .catch(error => {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+                alert('Network error. Please try again.');
+                console.error('Form submission error:', error);
+              });
+            });
+          }
         }
 
         // Initialize consultation modal
@@ -660,151 +728,8 @@
           });
         }
 
-        // Handle quote form submission
-        if (quoteForm) {
-          quoteForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(quoteForm);
-            const service = formData.get('service');
-            const budgetAmount = formData.get('budget_amount');
-            const budgetCurrency = formData.get('budget_currency');
-            const timeline = formData.get('timeline');
-            const requirements = formData.get('requirements')?.trim();
-            
-            // Combine budget amount and currency for display
-            const budget = budgetAmount && budgetCurrency ? `${budgetAmount} ${budgetCurrency}` : '';
-            
-            // Generate quote based on selections
-            let basePrice = 0;
-            let timelineMultiplier = 1;
-            
-            // Base prices by service
-            const servicePrices = {
-              'ai-automation': 15000,
-              'mobile-app': 25000,
-              'web-app': 20000,
-              'custom-software': 30000,
-              'ai-chatbot': 12000,
-              'ai-integration': 18000
-            };
-            
-            basePrice = servicePrices[service] || 20000;
-            
-            // Parse custom budget input
-            let userBudgetUSD = 0;
-            if (budgetAmount && budgetCurrency) {
-              const amount = parseFloat(budgetAmount);
-              if (!isNaN(amount)) {
-                // Convert to USD if needed (approximate exchange rate: 1 USD = 280 PKR)
-                userBudgetUSD = budgetCurrency === 'PKR' ? amount / 280 : amount;
-              }
-            }
-            
-            // Adjust quote based on user's budget vs base price
-            if (userBudgetUSD > 0) {
-              const ratio = userBudgetUSD / basePrice;
-              if (ratio < 0.5) {
-                // User budget is much lower - adjust down
-                basePrice *= 0.6;
-              } else if (ratio < 0.8) {
-                // User budget is lower - slight adjustment
-                basePrice *= 0.8;
-              } else if (ratio > 2) {
-                // User budget is higher - can offer premium features
-                basePrice *= 1.2;
-              }
-              // If ratio is between 0.8-2, keep base price
-            }
-            
-            // Adjust for timeline
-            const timelineMultipliers = {
-              'asap': 1.5,
-              '1-3-months': 1.2,
-              '3-6-months': 1.0,
-              '6-months-plus': 0.8
-            };
-            
-            basePrice *= timelineMultipliers[timeline] || 1.0;
-            
-            // Format price
-            const formattedPrice = new Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency: 'USD',
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0
-            }).format(Math.round(basePrice));
-            
-            // Service names for display
-            const serviceNames = {
-              'ai-automation': 'AI Automation',
-              'mobile-app': 'Mobile App Development',
-              'web-app': 'Web Application',
-              'custom-software': 'Custom Software',
-              'ai-chatbot': 'AI Chatbot',
-              'ai-integration': 'AI Integration'
-            };
-            
-            // Timeline names for display
-            const timelineNames = {
-              'asap': 'ASAP (2-4 weeks)',
-              '1-3-months': '1-3 months',
-              '3-6-months': '3-6 months',
-              '6-months-plus': '6+ months'
-            };
-            
-            // Replace form with quote result
-            const formContainer = document.getElementById('quote-form');
-            formContainer.innerHTML = `
-              <div class="text-center py-8">
-                <div class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20 px-2.5 py-1 text-xs mb-4">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  Quote Generated Successfully
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-2">Your Custom Quote</h3>
-                <div class="bg-white/5 rounded-xl p-6 mb-6 border border-white/10">
-                  <div class="text-4xl font-bold text-emerald-400 mb-2">${formattedPrice}</div>
-                  <div class="text-sm text-neutral-300 mb-4">Estimated project cost</div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div class="text-left">
-                      <div class="font-medium text-white">Service:</div>
-                      <div class="text-neutral-300">${serviceNames[service]}</div>
-                    </div>
-                    <div class="text-left">
-                      <div class="font-medium text-white">Timeline:</div>
-                      <div class="text-neutral-300">${timelineNames[timeline]}</div>
-                    </div>
-                    ${budget ? `
-                    <div class="text-left">
-                      <div class="font-medium text-white">Your Budget:</div>
-                      <div class="text-neutral-300">${budget}</div>
-                    </div>
-                    ` : ''}
-                  </div>
-                  ${requirements ? `
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                      <div class="font-medium text-white mb-2">Your Requirements:</div>
-                      <div class="text-neutral-300 text-sm italic">"${requirements}"</div>
-                    </div>
-                  ` : ''}
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                  <button onclick="location.reload()" class="inline-flex gap-2 ring-1 ring-violet-300 hover:bg-violet-300 transition text-sm font-medium text-neutral-900 bg-violet-400 rounded-xl pt-2.5 pr-4 pb-2.5 pl-4 shadow items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
-                    Get Another Quote
-                  </button>
-                  <a href="mailto:contact@softsmark.com?subject=Quote Request: ${serviceNames[service]}&body=Hi SOFTSMARK,%0A%0AI received a quote of ${formattedPrice} for ${serviceNames[service]} with a ${timelineNames[timeline]} timeline.%0A%0ARequirements: ${requirements || 'N/A'}%0A%0APlease contact me to discuss next steps." class="inline-flex gap-2 ring-1 ring-emerald-300 hover:bg-emerald-300 transition text-sm font-medium text-neutral-900 bg-emerald-400 rounded-xl pt-2.5 pr-4 pb-2.5 pl-4 shadow items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    Contact Us
-                  </a>
-                </div>
-                <div class="mt-4 text-xs text-neutral-400">
-                  This is an estimate. Final pricing may vary based on detailed requirements.
-                </div>
-              </div>
-            `;
-          });
-        }
+        // Handle quote form submission - now handled by PHP
+        // Removed JavaScript form handler to allow PHP processing
       });
     </script>
 
@@ -821,7 +746,7 @@
 </h1><p class="text-base text-zinc-300 max-w-2xl mt-0 sm:text-lg sm:text-left">
             Choose the perfect plan for your AI automation, custom software, or digital transformation needs. Transparent pricing with no hidden fees.
           </p><div class="flex gap-3 mb-0 pb-[60px] gap-x-3 gap-y-3 items-center justify-start">
-            <a href="#" onclick="return false" data-consultation-btn class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75">Get free consultation<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+            <a href="#" onclick="var m=document.getElementById('consultation-modal'); m.classList.remove('hidden'); m.classList.add('opacity-100'); m.querySelector('div').classList.remove('scale-95'); document.body.style.overflow='hidden'; return false" data-consultation-btn class="inline-flex items-center gap-2 shadow-violet-900/25 text-sm font-semibold text-white bg-gradient-to-br from-violet-500 to-indigo-600 rounded-full pt-2.5 pr-5 pb-2.5 pl-5 shadow-lg transform-gpu transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_24px_-6px_rgba(139,92,246,0.4)] hover:scale-[1.02] active:scale-[0.98] active:duration-75">Get free consultation<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-0.5"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
             <a href="#" onclick="openVideoModal()" class="inline-flex items-center gap-2 hover:bg-white/5 text-sm font-medium text-zinc-200 border-white/10 border rounded-full pt-2.5 pr-5 pb-2.5 pl-5 backdrop-blur-lg">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play h-4 w-4"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
               View project demos
@@ -1836,7 +1761,7 @@
           // Add click handlers to all consultation buttons
           consultationBtns.forEach(btn => {
             btn.addEventListener('click', function(e) {
-              e.preventDefault();
+              // e.preventDefault();
               openModal();
             });
           });
@@ -1857,6 +1782,54 @@
               closeModal();
             }
           });
+
+          // Handle consultation form submission
+          const contactForm = document.getElementById('contact-form');
+          if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              
+              const formData = new FormData(contactForm);
+              const submitButton = contactForm.querySelector('button[type="submit"]');
+              const originalText = submitButton.innerHTML;
+              
+              // Disable button and show loading state
+              submitButton.disabled = true;
+              submitButton.innerHTML = '<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+              
+              // Submit the form
+              fetch('send-consultation.php', {
+                method: 'POST',
+                body: formData
+              })
+              .then(response => response.text())
+              .then(result => {
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+                
+                if (result.includes('Thank you')) {
+                  // Success - show success message
+                  contactForm.classList.add('hidden');
+                  document.getElementById('consultation-success').classList.remove('hidden');
+                  document.getElementById('toast-notification').classList.remove('hidden');
+                  contactForm.reset();
+                  // Auto-hide toast after 5 seconds
+                  setTimeout(() => {
+                    document.getElementById('toast-notification').classList.add('hidden');
+                  }, 5000);
+                } else {
+                  alert(result || 'There was an error sending your consultation request. Please try again.');
+                }
+              })
+              .catch(error => {
+                submitButton.disabled = false;
+                submitButton.innerHTML = originalText;
+                alert('Network error. Please try again.');
+                console.error('Form submission error:', error);
+              });
+            });
+          }
         }
 
         // Mobile menu functionality
@@ -1957,145 +1930,46 @@
         if (quoteForm) {
           quoteForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const formData = new FormData(quoteForm);
-            const service = formData.get('service');
-            const budgetAmount = formData.get('budget_amount');
-            const budgetCurrency = formData.get('budget_currency');
-            const timeline = formData.get('timeline');
-            const requirements = formData.get('requirements')?.trim();
-            
-            // Combine budget amount and currency for display
-            const budget = budgetAmount && budgetCurrency ? `${budgetAmount} ${budgetCurrency}` : '';
-            
-            // Generate quote based on selections
-            let basePrice = 0;
-            let timelineMultiplier = 1;
-            
-            // Base prices by service
-            const servicePrices = {
-              'ai-automation': 15000,
-              'mobile-app': 25000,
-              'web-app': 20000,
-              'custom-software': 30000,
-              'ai-chatbot': 12000,
-              'ai-integration': 18000
-            };
-            
-            basePrice = servicePrices[service] || 20000;
-            
-            // Parse custom budget input
-            let userBudgetUSD = 0;
-            if (budgetAmount && budgetCurrency) {
-              const amount = parseFloat(budgetAmount);
-              if (!isNaN(amount)) {
-                // Convert to USD if needed (approximate exchange rate: 1 USD = 280 PKR)
-                userBudgetUSD = budgetCurrency === 'PKR' ? amount / 280 : amount;
+            const submitButton = quoteForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>';
+
+            // Submit the form
+            fetch(quoteForm.action, {
+              method: 'POST',
+              body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+              // Reset button state
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalText;
+
+              if (result.includes('Thank you')) {
+                // Success
+                alert('Thank you! Your quote request has been sent successfully. Please check your email.');
+                quoteModal.classList.remove('opacity-100');
+                quoteModal.querySelector('div').classList.add('scale-95');
+                setTimeout(() => {
+                  quoteModal.classList.add('hidden');
+                  document.body.style.overflow = '';
+                  quoteForm.reset();
+                }, 300);
+              } else {
+                alert('Sorry, there was an error sending your quote. Please try again.');
               }
-            }
-            
-            // Adjust quote based on user's budget vs base price
-            if (userBudgetUSD > 0) {
-              const ratio = userBudgetUSD / basePrice;
-              if (ratio < 0.5) {
-                // User budget is much lower - adjust down
-                basePrice *= 0.6;
-              } else if (ratio < 0.8) {
-                // User budget is lower - slight adjustment
-                basePrice *= 0.8;
-              } else if (ratio > 2) {
-                // User budget is higher - can offer premium features
-                basePrice *= 1.2;
-              }
-              // If ratio is between 0.8-2, keep base price
-            }
-            
-            // Adjust for timeline
-            const timelineMultipliers = {
-              'asap': 1.5,
-              '1-3-months': 1.2,
-              '3-6-months': 1.0,
-              '6-months-plus': 0.8
-            };
-            
-            basePrice *= timelineMultipliers[timeline] || 1.0;
-            
-            // Format price
-            const formattedPrice = new Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency: 'USD',
-              minimumFractionDigits: 0,
-              maximumFractionDigits: 0
-            }).format(Math.round(basePrice));
-            
-            // Service names for display
-            const serviceNames = {
-              'ai-automation': 'AI Automation',
-              'mobile-app': 'Mobile App Development',
-              'web-app': 'Web Application',
-              'custom-software': 'Custom Software',
-              'ai-chatbot': 'AI Chatbot',
-              'ai-integration': 'AI Integration'
-            };
-            
-            // Timeline names for display
-            const timelineNames = {
-              'asap': 'ASAP (2-4 weeks)',
-              '1-3-months': '1-3 months',
-              '3-6-months': '3-6 months',
-              '6-months-plus': '6+ months'
-            };
-            
-            // Replace form with quote result
-            const formContainer = document.getElementById('quote-form');
-            formContainer.innerHTML = `
-              <div class="text-center py-8">
-                <div class="inline-flex items-center gap-2 rounded-full bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20 px-2.5 py-1 text-xs mb-4">
-                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  Quote Generated Successfully
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-2">Your Custom Quote</h3>
-                <div class="bg-white/5 rounded-xl p-6 mb-6 border border-white/10">
-                  <div class="text-4xl font-bold text-emerald-400 mb-2">${formattedPrice}</div>
-                  <div class="text-sm text-neutral-300 mb-4">Estimated project cost</div>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div class="text-left">
-                      <div class="font-medium text-white">Service:</div>
-                      <div class="text-neutral-300">${serviceNames[service]}</div>
-                    </div>
-                    <div class="text-left">
-                      <div class="font-medium text-white">Timeline:</div>
-                      <div class="text-neutral-300">${timelineNames[timeline]}</div>
-                    </div>
-                    ${budget ? `
-                    <div class="text-left">
-                      <div class="font-medium text-white">Your Budget:</div>
-                      <div class="text-neutral-300">${budget}</div>
-                    </div>
-                    ` : ''}
-                  </div>
-                  ${requirements ? `
-                    <div class="mt-4 pt-4 border-t border-white/10">
-                      <div class="font-medium text-white mb-2">Your Requirements:</div>
-                      <div class="text-neutral-300 text-sm italic">"${requirements}"</div>
-                    </div>
-                  ` : ''}
-                </div>
-                <div class="flex flex-col sm:flex-row gap-3 justify-center">
-                  <button onclick="location.reload()" class="inline-flex gap-2 ring-1 ring-violet-300 hover:bg-violet-300 transition text-sm font-medium text-neutral-900 bg-violet-400 rounded-xl pt-2.5 pr-4 pb-2.5 pl-4 shadow items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg>
-                    Get Another Quote
-                  </button>
-                  <a href="mailto:contact@softsmark.com?subject=Quote Request: ${serviceNames[service]}&body=Hi SOFTSMARK,%0A%0AI received a quote of ${formattedPrice} for ${serviceNames[service]} with a ${timelineNames[timeline]} timeline.%0A%0ARequirements: ${requirements || 'N/A'}%0A%0APlease contact me to discuss next steps." class="inline-flex gap-2 ring-1 ring-emerald-300 hover:bg-emerald-300 transition text-sm font-medium text-neutral-900 bg-emerald-400 rounded-xl pt-2.5 pr-4 pb-2.5 pl-4 shadow items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    Contact Us
-                  </a>
-                </div>
-                <div class="mt-4 text-xs text-neutral-400">
-                  This is an estimate. Final pricing may vary based on detailed requirements.
-                </div>
-              </div>
-            `;
+            })
+            .catch(error => {
+              submitButton.disabled = false;
+              submitButton.innerHTML = originalText;
+              alert('Network error. Please try again.');
+              console.error('Form submission error:', error);
+            });
           });
         }
       });
@@ -2221,7 +2095,7 @@
                 </a>
               </div>
             </div>
-            <form id="contact-form" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form id="contact-form" action="send-consultation.php" method="POST" class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div class="sm:col-span-1">
                 <label for="name" class="block text-xs font-medium text-white/80 mb-1">Your name</label>
                 <input id="name" name="name" type="text" required="" placeholder="Jane Doe" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-amber-400/60 focus:border-amber-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">
@@ -2260,6 +2134,21 @@
                 </div>
               </div>
             </form>
+
+            <!-- Success Message -->
+            <div id="consultation-success" class="hidden text-center py-8">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-emerald-400/10 rounded-full mb-4">
+                <svg class="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-semibold text-white mb-2">Consultation Request Sent!</h3>
+              <p class="text-zinc-300 mb-4">Thank you for your interest in SOFTSMARK. We've received your consultation request and will get back to you within 24 hours.</p>
+              <p class="text-sm text-zinc-400">A confirmation email has been sent to your inbox with the details of your request.</p>
+              <button onclick="document.getElementById('consultation-modal').classList.remove('opacity-100'); document.getElementById('consultation-modal').querySelector('div').classList.add('scale-95'); setTimeout(() => { document.getElementById('consultation-modal').classList.add('hidden'); document.body.style.overflow = ''; document.getElementById('contact-form').classList.remove('hidden'); document.getElementById('consultation-success').classList.add('hidden'); }, 300);" class="mt-6 inline-flex items-center gap-2 px-6 py-2 bg-amber-400 text-neutral-900 font-medium rounded-xl hover:bg-amber-300 transition">
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -2302,7 +2191,7 @@
                 </li>
               </ul>
             </div>
-            <form id="quote-request-form" class="lg:col-span-2 flex flex-col gap-3">
+            <form id="quote-request-form" action="send-quote.php" method="POST" class="lg:col-span-2 flex flex-col gap-3">
               <div>
                 <label for="quote-name" class="block text-xs font-medium text-white/80 mb-1">Your name</label>
                 <input id="quote-name" name="name" type="text" required placeholder="Jane Doe" class="w-full placeholder-white/40 outline-none focus:ring-2 focus:ring-violet-400/60 focus:border-violet-300 transition text-sm text-white bg-white/10 border-white/10 border rounded-xl pt-2.5 pr-3 pb-2.5 pl-3">

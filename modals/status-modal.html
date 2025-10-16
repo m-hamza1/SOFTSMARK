@@ -1,0 +1,60 @@
+<!-- Status Modal -->
+<div id="status-modal" class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 hidden">
+  <div class="flex items-center justify-center min-h-screen p-4">
+    <div class="bg-zinc-900/95 backdrop-blur-xl border border-zinc-700/50 rounded-2xl max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl shadow-violet-500/10">
+      <div class="p-8 border-b border-zinc-700/50">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-bold text-white bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">System Status</h2>
+          <button onclick="closeModal('status')" class="text-zinc-400 hover:text-white transition-colors duration-200 p-2 hover:bg-zinc-800 rounded-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="x" class="lucide lucide-x"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="p-8 text-zinc-300 leading-relaxed">
+        <div class="mb-8">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-4 h-4 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-xl font-semibold text-white">All Systems Operational</span>
+          </div>
+          <p class="text-zinc-400">All services are running normally. No incidents reported in the last 24 hours.</p>
+        </div>
+
+        <h3 class="text-xl font-semibold text-white mb-6 border-l-4 border-violet-500 pl-4">Service Status</h3>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between p-4 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30 rounded-xl hover:bg-zinc-800/70 transition-colors duration-200">
+            <span class="font-medium">API Services</span>
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"></div>
+              <span class="text-green-400 text-sm font-medium">Operational</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30 rounded-xl hover:bg-zinc-800/70 transition-colors duration-200">
+            <span class="font-medium">Web Application</span>
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"></div>
+              <span class="text-green-400 text-sm font-medium">Operational</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30 rounded-xl hover:bg-zinc-800/70 transition-colors duration-200">
+            <span class="font-medium">Database</span>
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"></div>
+              <span class="text-green-400 text-sm font-medium">Operational</span>
+            </div>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-zinc-800/50 backdrop-blur-sm border border-zinc-700/30 rounded-xl hover:bg-zinc-800/70 transition-colors duration-200">
+            <span class="font-medium">File Storage</span>
+            <div class="flex items-center gap-3">
+              <div class="w-3 h-3 bg-green-500 rounded-full shadow-lg shadow-green-500/50"></div>
+              <span class="text-green-400 text-sm font-medium">Operational</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 p-6 bg-gradient-to-r from-violet-500/10 to-indigo-500/10 border border-violet-500/20 rounded-xl backdrop-blur-sm">
+          <p class="text-sm text-violet-300">For real-time status updates, visit our <a href="#" class="underline hover:text-violet-200 transition-colors duration-200 font-medium">status page</a>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
