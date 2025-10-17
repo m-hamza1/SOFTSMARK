@@ -1684,7 +1684,57 @@
       }
 
       function setupAllModalButtons() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMenuButton = document.getElementById('close-menu');
+        const consultationBtnMenu = document.getElementById('consultation-btn-menu');
+        const consultationModal = document.getElementById('consultation-modal');
+
+        if (mobileMenuButton && mobileMenu && closeMenuButton) {
+            const openMenu = (e) => {
+                e.preventDefault();
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.querySelector('.absolute.inset-0.bg-black\/60').classList.add('opacity-100');
+                mobileMenu.querySelector('.absolute.right-0.top-0').classList.remove('translate-x-full');
+            };
+
+            const closeMenu = (e) => {
+                e.preventDefault();
+                mobileMenu.querySelector('.absolute.inset-0.bg-black\/60').classList.remove('opacity-100');
+                mobileMenu.querySelector('.absolute.right-0.top-0').classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            };
+
+            mobileMenuButton.addEventListener('click', openMenu);
+            mobileMenuButton.addEventListener('touchstart', openMenu);
+
+            closeMenuButton.addEventListener('click', closeMenu);
+            closeMenuButton.addEventListener('touchstart', closeMenu);
+
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target === mobileMenu) {
+                    closeMenu(e);
+                }
+            });
         }
+
+        if (consultationBtnMenu && consultationModal) {
+            const openConsultationModal = (e) => {
+                e.preventDefault();
+                consultationModal.classList.remove('hidden');
+                requestAnimationFrame(() => {
+                    consultationModal.classList.add('opacity-100');
+                    consultationModal.querySelector('div').classList.remove('scale-95');
+                });
+                document.body.style.overflow = 'hidden';
+            };
+
+            consultationBtnMenu.addEventListener('click', openConsultationModal);
+            consultationBtnMenu.addEventListener('touchstart', openConsultationModal);
+        }
+    }
 
         // Set up footer modal buttons (Privacy, Terms, Status)
         const footerLinks = document.querySelectorAll('footer a[href="#"]');
@@ -2331,7 +2381,31 @@
   <script src="components/scroll-performance.js" defer></script>
   <script src="components/style-optimizer.js" defer></script>
   <script src="components/animation-observer.js" defer></script>
-  <script src="components/custom-cursor.js" defer></script>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Fix desktop CTA button
+  const desktopBtn = document.getElementById('consultation-btn-desktop');
+  if (desktopBtn) {
+    desktopBtn.onclick = null; // remove inline handler
+    desktopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('consultation-modal');
+      if (modal) {
+        modal.classList.remove('hidden', 'opacity-0');
+        modal.classList.add('opacity-100');
+        modal.querySelector('div')?.classList.remove('scale-95');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  // Re-init mobile menu if needed
+  if (typeof setupMobileMenu === 'function') {
+    setupMobileMenu();
+  }
+});
+</script>
 
 </body></html>
